@@ -1,0 +1,5 @@
+{
+  "/about": "about.tsx",
+  "/contact": "service.tsx",
+  "/inventory": "service.tsx"
+}
