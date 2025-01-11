@@ -1,0 +1,47 @@
+{
+  "home": {
+    "component": "https://akbarinejadaida.github.io/cdnfiles/pages/home/home.js",
+    "meta": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/meta/meta.js",
+      "title": "Hi from home page",
+      "description": "This is home page",
+      "favicon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK-Vg_IFRtnL2WQsSiJFML7R22xC8i0FL11w&s"
+    },
+    "slider": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-1.js",
+      "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper.css",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
+    },
+    "welcome": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome.js",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome-2.css"
+    }
+  },
+  "about": {
+    "component": "https://akbarinejadaida.github.io/cdnfiles/pages/about/about.js",
+    "meta": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/meta/meta.js",
+      "title": "Hi from about page",
+      "description": "This is about us page",
+      "favicon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK-Vg_IFRtnL2WQsSiJFML7R22xC8i0FL11w&s"
+    },
+    "welcome": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome.js",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome-2.css"
+    }
+  },
+  "service": {
+    "component": "https://akbarinejadaida.github.io/cdnfiles/pages/service/service.js",
+    "meta": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/meta/meta.js",
+      "title": "Hi from service page",
+      "description": "This is service page",
+      "favicon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK-Vg_IFRtnL2WQsSiJFML7R22xC8i0FL11w&s"
+    },
+    "slider": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-1.js",
+      "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper.css",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
+    }
+  }
+}
