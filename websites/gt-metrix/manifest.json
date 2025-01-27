@@ -1,4 +1,10 @@
 {
+  "navbar": {
+    "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/navbar.js",
+    "navLink": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
+    }
+  },
   "home": {
     "component": "https://akbarinejadaida.github.io/cdnfiles/pages/home/home.js",
     "meta": {
