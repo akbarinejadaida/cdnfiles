@@ -34,5 +34,23 @@
       "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper.css",
       "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
     }
+  },
+  "layout": {
+    "navbar": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/navbar.js",
+      "navLink": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
+      }
+    },
+    "footer": {
+      "contactInfo": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/contact-info/contact-info.js"
+      }
+    },
+    "header": {
+      "information": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/information/information.js"
+      }
+    }
   }
 }

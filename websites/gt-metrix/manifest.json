@@ -3,12 +3,6 @@
     "react": "https://unpkg.com/react@18.3.1/umd/react.production.min.js",
     "reactDom": "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
   },
-  "navbar": {
-    "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/navbar.js",
-    "navLink": {
-      "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
-    }
-  },
   "home": {
     "component": "https://akbarinejadaida.github.io/cdnfiles/pages/home/home.js",
     "meta": {
@@ -54,10 +48,21 @@
       "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
     }
   },
-  "Layout": {
+  "layout": {
+    "navbar": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/navbar.js",
+      "navLink": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
+      }
+    },
     "footer": {
       "contactInfo": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/contact-info/contact-info.js"
+      }
+    },
+    "header": {
+      "information": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/information/information.js"
       }
     }
   }
