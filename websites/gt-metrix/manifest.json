@@ -1,4 +1,8 @@
 {
+  "base": {
+    "react": "https://unpkg.com/react@18/umd/react.production.min.js",
+    "reactDom": "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+  },
   "navbar": {
     "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/navbar.js",
     "navLink": {
