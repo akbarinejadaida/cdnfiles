@@ -53,5 +53,12 @@
       "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper.css",
       "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
     }
+  },
+  "Layout": {
+    "footer": {
+      "contactInfo": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/contact-info/contact-info.js"
+      }
+    }
   }
 }
