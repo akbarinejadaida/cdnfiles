@@ -1,0 +1,1224 @@
+!(function (e, r) {
+  "object" == typeof exports && "undefined" != typeof module
+    ? (module.exports = r(require("react")))
+    : "function" == typeof define && define.amd
+    ? define(["react"], r)
+    : ((e =
+        "undefined" != typeof globalThis ? globalThis : e || self).SubFooter =
+        r(e.React));
+})(this, function (e) {
+  "use strict";
+  function r(e) {
+    return e && "object" == typeof e && "default" in e ? e : { default: e };
+  }
+  var o = r(e);
+  function t(e) {
+    var r,
+      o,
+      n = "";
+    if ("string" == typeof e || "number" == typeof e) n += e;
+    else if ("object" == typeof e)
+      if (Array.isArray(e)) {
+        var l = e.length;
+        for (r = 0; r < l; r++)
+          e[r] && (o = t(e[r])) && (n && (n += " "), (n += o));
+      } else for (o in e) e[o] && (n && (n += " "), (n += o));
+    return n;
+  }
+  "function" == typeof SuppressedError && SuppressedError;
+  const n = (e) => {
+      const r = i(e),
+        { conflictingClassGroups: o, conflictingClassGroupModifiers: t } = e;
+      return {
+        getClassGroupId: (e) => {
+          const o = e.split("-");
+          return "" === o[0] && 1 !== o.length && o.shift(), l(o, r) || a(e);
+        },
+        getConflictingClassGroupIds: (e, r) => {
+          const n = o[e] || [];
+          return r && t[e] ? [...n, ...t[e]] : n;
+        },
+      };
+    },
+    l = (e, r) => {
+      if (0 === e.length) return r.classGroupId;
+      const o = e[0],
+        t = r.nextPart.get(o),
+        n = t ? l(e.slice(1), t) : void 0;
+      if (n) return n;
+      if (0 === r.validators.length) return;
+      const s = e.join("-");
+      return r.validators.find(({ validator: e }) => e(s))?.classGroupId;
+    },
+    s = /^\[(.+)\]$/,
+    a = (e) => {
+      if (s.test(e)) {
+        const r = s.exec(e)[1],
+          o = r?.substring(0, r.indexOf(":"));
+        if (o) return "arbitrary.." + o;
+      }
+    },
+    i = (e) => {
+      const { theme: r, prefix: o } = e,
+        t = { nextPart: new Map(), validators: [] };
+      return (
+        u(Object.entries(e.classGroups), o).forEach(([e, o]) => {
+          d(o, t, e, r);
+        }),
+        t
+      );
+    },
+    d = (e, r, o, t) => {
+      e.forEach((e) => {
+        if ("string" != typeof e) {
+          if ("function" == typeof e)
+            return p(e)
+              ? void d(e(t), r, o, t)
+              : void r.validators.push({ validator: e, classGroupId: o });
+          Object.entries(e).forEach(([e, n]) => {
+            d(n, c(r, e), o, t);
+          });
+        } else {
+          ("" === e ? r : c(r, e)).classGroupId = o;
+        }
+      });
+    },
+    c = (e, r) => {
+      let o = e;
+      return (
+        r.split("-").forEach((e) => {
+          o.nextPart.has(e) ||
+            o.nextPart.set(e, { nextPart: new Map(), validators: [] }),
+            (o = o.nextPart.get(e));
+        }),
+        o
+      );
+    },
+    p = (e) => e.isThemeGetter,
+    u = (e, r) =>
+      r
+        ? e.map(([e, o]) => [
+            e,
+            o.map((e) =>
+              "string" == typeof e
+                ? r + e
+                : "object" == typeof e
+                ? Object.fromEntries(
+                    Object.entries(e).map(([e, o]) => [r + e, o])
+                  )
+                : e
+            ),
+          ])
+        : e,
+    b = (e) => {
+      if (e < 1) return { get: () => {}, set: () => {} };
+      let r = 0,
+        o = new Map(),
+        t = new Map();
+      const n = (n, l) => {
+        o.set(n, l), r++, r > e && ((r = 0), (t = o), (o = new Map()));
+      };
+      return {
+        get(e) {
+          let r = o.get(e);
+          return void 0 !== r
+            ? r
+            : void 0 !== (r = t.get(e))
+            ? (n(e, r), r)
+            : void 0;
+        },
+        set(e, r) {
+          o.has(e) ? o.set(e, r) : n(e, r);
+        },
+      };
+    },
+    f = (e) => {
+      const { separator: r, experimentalParseClassName: o } = e,
+        t = 1 === r.length,
+        n = r[0],
+        l = r.length,
+        s = (e) => {
+          const o = [];
+          let s,
+            a = 0,
+            i = 0;
+          for (let d = 0; d < e.length; d++) {
+            let c = e[d];
+            if (0 === a) {
+              if (c === n && (t || e.slice(d, d + l) === r)) {
+                o.push(e.slice(i, d)), (i = d + l);
+                continue;
+              }
+              if ("/" === c) {
+                s = d;
+                continue;
+              }
+            }
+            "[" === c ? a++ : "]" === c && a--;
+          }
+          const d = 0 === o.length ? e : e.substring(i),
+            c = d.startsWith("!");
+          return {
+            modifiers: o,
+            hasImportantModifier: c,
+            baseClassName: c ? d.substring(1) : d,
+            maybePostfixModifierPosition: s && s > i ? s - i : void 0,
+          };
+        };
+      return o ? (e) => o({ className: e, parseClassName: s }) : s;
+    },
+    m = (e) => {
+      if (e.length <= 1) return e;
+      const r = [];
+      let o = [];
+      return (
+        e.forEach((e) => {
+          "[" === e[0] ? (r.push(...o.sort(), e), (o = [])) : o.push(e);
+        }),
+        r.push(...o.sort()),
+        r
+      );
+    },
+    g = /\s+/;
+  function h() {
+    let e,
+      r,
+      o = 0,
+      t = "";
+    for (; o < arguments.length; )
+      (e = arguments[o++]) && (r = y(e)) && (t && (t += " "), (t += r));
+    return t;
+  }
+  const y = (e) => {
+    if ("string" == typeof e) return e;
+    let r,
+      o = "";
+    for (let t = 0; t < e.length; t++)
+      e[t] && (r = y(e[t])) && (o && (o += " "), (o += r));
+    return o;
+  };
+  function x(e, ...r) {
+    let o,
+      t,
+      l,
+      s = function (i) {
+        const d = r.reduce((e, r) => r(e), e());
+        return (
+          (o = ((e) => ({
+            cache: b(e.cacheSize),
+            parseClassName: f(e),
+            ...n(e),
+          }))(d)),
+          (t = o.cache.get),
+          (l = o.cache.set),
+          (s = a),
+          a(i)
+        );
+      };
+    function a(e) {
+      const r = t(e);
+      if (r) return r;
+      const n = ((e, r) => {
+        const {
+            parseClassName: o,
+            getClassGroupId: t,
+            getConflictingClassGroupIds: n,
+          } = r,
+          l = [],
+          s = e.trim().split(g);
+        let a = "";
+        for (let e = s.length - 1; e >= 0; e -= 1) {
+          const r = s[e],
+            {
+              modifiers: i,
+              hasImportantModifier: d,
+              baseClassName: c,
+              maybePostfixModifierPosition: p,
+            } = o(r);
+          let u = Boolean(p),
+            b = t(u ? c.substring(0, p) : c);
+          if (!b) {
+            if (!u) {
+              a = r + (a.length > 0 ? " " + a : a);
+              continue;
+            }
+            if (((b = t(c)), !b)) {
+              a = r + (a.length > 0 ? " " + a : a);
+              continue;
+            }
+            u = !1;
+          }
+          const f = m(i).join(":"),
+            g = d ? f + "!" : f,
+            h = g + b;
+          if (l.includes(h)) continue;
+          l.push(h);
+          const y = n(b, u);
+          for (let e = 0; e < y.length; ++e) {
+            const r = y[e];
+            l.push(g + r);
+          }
+          a = r + (a.length > 0 ? " " + a : a);
+        }
+        return a;
+      })(e, o);
+      return l(e, n), n;
+    }
+    return function () {
+      return s(h.apply(null, arguments));
+    };
+  }
+  const v = (e) => {
+      const r = (r) => r[e] || [];
+      return (r.isThemeGetter = !0), r;
+    },
+    w = /^\[(?:([a-z-]+):)?(.+)\]$/i,
+    k = /^\d+\/\d+$/,
+    z = new Set(["px", "full", "screen"]),
+    j = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/,
+    C =
+      /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/,
+    N = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/,
+    E = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/,
+    G =
+      /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/,
+    P = (e) => I(e) || z.has(e) || k.test(e),
+    S = (e) => H(e, "length", L),
+    I = (e) => Boolean(e) && !Number.isNaN(Number(e)),
+    M = (e) => H(e, "number", I),
+    $ = (e) => Boolean(e) && Number.isInteger(Number(e)),
+    O = (e) => e.endsWith("%") && I(e.slice(0, -1)),
+    R = (e) => w.test(e),
+    T = (e) => j.test(e),
+    W = new Set(["length", "size", "percentage"]),
+    q = (e) => H(e, W, Y),
+    B = (e) => H(e, "position", Y),
+    D = new Set(["image", "url"]),
+    _ = (e) => H(e, D, K),
+    A = (e) => H(e, "", J),
+    F = () => !0,
+    H = (e, r, o) => {
+      const t = w.exec(e);
+      return (
+        !!t &&
+        (t[1] ? ("string" == typeof r ? t[1] === r : r.has(t[1])) : o(t[2]))
+      );
+    },
+    L = (e) => C.test(e) && !N.test(e),
+    Y = () => !1,
+    J = (e) => E.test(e),
+    K = (e) => G.test(e),
+    Q = x(() => {
+      const e = v("colors"),
+        r = v("spacing"),
+        o = v("blur"),
+        t = v("brightness"),
+        n = v("borderColor"),
+        l = v("borderRadius"),
+        s = v("borderSpacing"),
+        a = v("borderWidth"),
+        i = v("contrast"),
+        d = v("grayscale"),
+        c = v("hueRotate"),
+        p = v("invert"),
+        u = v("gap"),
+        b = v("gradientColorStops"),
+        f = v("gradientColorStopPositions"),
+        m = v("inset"),
+        g = v("margin"),
+        h = v("opacity"),
+        y = v("padding"),
+        x = v("saturate"),
+        w = v("scale"),
+        k = v("sepia"),
+        z = v("skew"),
+        j = v("space"),
+        C = v("translate"),
+        N = () => ["auto", R, r],
+        E = () => [R, r],
+        G = () => ["", P, S],
+        W = () => ["auto", I, R],
+        D = () => ["", "0", R],
+        H = () => [I, R];
+      return {
+        cacheSize: 500,
+        separator: ":",
+        theme: {
+          colors: [F],
+          spacing: [P, S],
+          blur: ["none", "", T, R],
+          brightness: H(),
+          borderColor: [e],
+          borderRadius: ["none", "", "full", T, R],
+          borderSpacing: E(),
+          borderWidth: G(),
+          contrast: H(),
+          grayscale: D(),
+          hueRotate: H(),
+          invert: D(),
+          gap: E(),
+          gradientColorStops: [e],
+          gradientColorStopPositions: [O, S],
+          inset: N(),
+          margin: N(),
+          opacity: H(),
+          padding: E(),
+          saturate: H(),
+          scale: H(),
+          sepia: D(),
+          skew: H(),
+          space: E(),
+          translate: E(),
+        },
+        classGroups: {
+          aspect: [{ aspect: ["auto", "square", "video", R] }],
+          container: ["container"],
+          columns: [{ columns: [T] }],
+          "break-after": [
+            {
+              "break-after": [
+                "auto",
+                "avoid",
+                "all",
+                "avoid-page",
+                "page",
+                "left",
+                "right",
+                "column",
+              ],
+            },
+          ],
+          "break-before": [
+            {
+              "break-before": [
+                "auto",
+                "avoid",
+                "all",
+                "avoid-page",
+                "page",
+                "left",
+                "right",
+                "column",
+              ],
+            },
+          ],
+          "break-inside": [
+            { "break-inside": ["auto", "avoid", "avoid-page", "avoid-column"] },
+          ],
+          "box-decoration": [{ "box-decoration": ["slice", "clone"] }],
+          box: [{ box: ["border", "content"] }],
+          display: [
+            "block",
+            "inline-block",
+            "inline",
+            "flex",
+            "inline-flex",
+            "table",
+            "inline-table",
+            "table-caption",
+            "table-cell",
+            "table-column",
+            "table-column-group",
+            "table-footer-group",
+            "table-header-group",
+            "table-row-group",
+            "table-row",
+            "flow-root",
+            "grid",
+            "inline-grid",
+            "contents",
+            "list-item",
+            "hidden",
+          ],
+          float: [{ float: ["right", "left", "none", "start", "end"] }],
+          clear: [{ clear: ["left", "right", "both", "none", "start", "end"] }],
+          isolation: ["isolate", "isolation-auto"],
+          "object-fit": [
+            { object: ["contain", "cover", "fill", "none", "scale-down"] },
+          ],
+          "object-position": [
+            {
+              object: [
+                "bottom",
+                "center",
+                "left",
+                "left-bottom",
+                "left-top",
+                "right",
+                "right-bottom",
+                "right-top",
+                "top",
+                R,
+              ],
+            },
+          ],
+          overflow: [
+            { overflow: ["auto", "hidden", "clip", "visible", "scroll"] },
+          ],
+          "overflow-x": [
+            { "overflow-x": ["auto", "hidden", "clip", "visible", "scroll"] },
+          ],
+          "overflow-y": [
+            { "overflow-y": ["auto", "hidden", "clip", "visible", "scroll"] },
+          ],
+          overscroll: [{ overscroll: ["auto", "contain", "none"] }],
+          "overscroll-x": [{ "overscroll-x": ["auto", "contain", "none"] }],
+          "overscroll-y": [{ "overscroll-y": ["auto", "contain", "none"] }],
+          position: ["static", "fixed", "absolute", "relative", "sticky"],
+          inset: [{ inset: [m] }],
+          "inset-x": [{ "inset-x": [m] }],
+          "inset-y": [{ "inset-y": [m] }],
+          start: [{ start: [m] }],
+          end: [{ end: [m] }],
+          top: [{ top: [m] }],
+          right: [{ right: [m] }],
+          bottom: [{ bottom: [m] }],
+          left: [{ left: [m] }],
+          visibility: ["visible", "invisible", "collapse"],
+          z: [{ z: ["auto", $, R] }],
+          basis: [{ basis: N() }],
+          "flex-direction": [
+            { flex: ["row", "row-reverse", "col", "col-reverse"] },
+          ],
+          "flex-wrap": [{ flex: ["wrap", "wrap-reverse", "nowrap"] }],
+          flex: [{ flex: ["1", "auto", "initial", "none", R] }],
+          grow: [{ grow: D() }],
+          shrink: [{ shrink: D() }],
+          order: [{ order: ["first", "last", "none", $, R] }],
+          "grid-cols": [{ "grid-cols": [F] }],
+          "col-start-end": [{ col: ["auto", { span: ["full", $, R] }, R] }],
+          "col-start": [{ "col-start": W() }],
+          "col-end": [{ "col-end": W() }],
+          "grid-rows": [{ "grid-rows": [F] }],
+          "row-start-end": [{ row: ["auto", { span: [$, R] }, R] }],
+          "row-start": [{ "row-start": W() }],
+          "row-end": [{ "row-end": W() }],
+          "grid-flow": [
+            { "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"] },
+          ],
+          "auto-cols": [{ "auto-cols": ["auto", "min", "max", "fr", R] }],
+          "auto-rows": [{ "auto-rows": ["auto", "min", "max", "fr", R] }],
+          gap: [{ gap: [u] }],
+          "gap-x": [{ "gap-x": [u] }],
+          "gap-y": [{ "gap-y": [u] }],
+          "justify-content": [
+            {
+              justify: [
+                "normal",
+                "start",
+                "end",
+                "center",
+                "between",
+                "around",
+                "evenly",
+                "stretch",
+              ],
+            },
+          ],
+          "justify-items": [
+            { "justify-items": ["start", "end", "center", "stretch"] },
+          ],
+          "justify-self": [
+            { "justify-self": ["auto", "start", "end", "center", "stretch"] },
+          ],
+          "align-content": [
+            {
+              content: [
+                "normal",
+                "start",
+                "end",
+                "center",
+                "between",
+                "around",
+                "evenly",
+                "stretch",
+                "baseline",
+              ],
+            },
+          ],
+          "align-items": [
+            { items: ["start", "end", "center", "baseline", "stretch"] },
+          ],
+          "align-self": [
+            { self: ["auto", "start", "end", "center", "stretch", "baseline"] },
+          ],
+          "place-content": [
+            {
+              "place-content": [
+                "start",
+                "end",
+                "center",
+                "between",
+                "around",
+                "evenly",
+                "stretch",
+                "baseline",
+              ],
+            },
+          ],
+          "place-items": [
+            {
+              "place-items": ["start", "end", "center", "baseline", "stretch"],
+            },
+          ],
+          "place-self": [
+            { "place-self": ["auto", "start", "end", "center", "stretch"] },
+          ],
+          p: [{ p: [y] }],
+          px: [{ px: [y] }],
+          py: [{ py: [y] }],
+          ps: [{ ps: [y] }],
+          pe: [{ pe: [y] }],
+          pt: [{ pt: [y] }],
+          pr: [{ pr: [y] }],
+          pb: [{ pb: [y] }],
+          pl: [{ pl: [y] }],
+          m: [{ m: [g] }],
+          mx: [{ mx: [g] }],
+          my: [{ my: [g] }],
+          ms: [{ ms: [g] }],
+          me: [{ me: [g] }],
+          mt: [{ mt: [g] }],
+          mr: [{ mr: [g] }],
+          mb: [{ mb: [g] }],
+          ml: [{ ml: [g] }],
+          "space-x": [{ "space-x": [j] }],
+          "space-x-reverse": ["space-x-reverse"],
+          "space-y": [{ "space-y": [j] }],
+          "space-y-reverse": ["space-y-reverse"],
+          w: [{ w: ["auto", "min", "max", "fit", "svw", "lvw", "dvw", R, r] }],
+          "min-w": [{ "min-w": [R, r, "min", "max", "fit"] }],
+          "max-w": [
+            {
+              "max-w": [
+                R,
+                r,
+                "none",
+                "full",
+                "min",
+                "max",
+                "fit",
+                "prose",
+                { screen: [T] },
+                T,
+              ],
+            },
+          ],
+          h: [{ h: [R, r, "auto", "min", "max", "fit", "svh", "lvh", "dvh"] }],
+          "min-h": [
+            { "min-h": [R, r, "min", "max", "fit", "svh", "lvh", "dvh"] },
+          ],
+          "max-h": [
+            { "max-h": [R, r, "min", "max", "fit", "svh", "lvh", "dvh"] },
+          ],
+          size: [{ size: [R, r, "auto", "min", "max", "fit"] }],
+          "font-size": [{ text: ["base", T, S] }],
+          "font-smoothing": ["antialiased", "subpixel-antialiased"],
+          "font-style": ["italic", "not-italic"],
+          "font-weight": [
+            {
+              font: [
+                "thin",
+                "extralight",
+                "light",
+                "normal",
+                "medium",
+                "semibold",
+                "bold",
+                "extrabold",
+                "black",
+                M,
+              ],
+            },
+          ],
+          "font-family": [{ font: [F] }],
+          "fvn-normal": ["normal-nums"],
+          "fvn-ordinal": ["ordinal"],
+          "fvn-slashed-zero": ["slashed-zero"],
+          "fvn-figure": ["lining-nums", "oldstyle-nums"],
+          "fvn-spacing": ["proportional-nums", "tabular-nums"],
+          "fvn-fraction": ["diagonal-fractions", "stacked-fractions"],
+          tracking: [
+            {
+              tracking: [
+                "tighter",
+                "tight",
+                "normal",
+                "wide",
+                "wider",
+                "widest",
+                R,
+              ],
+            },
+          ],
+          "line-clamp": [{ "line-clamp": ["none", I, M] }],
+          leading: [
+            {
+              leading: [
+                "none",
+                "tight",
+                "snug",
+                "normal",
+                "relaxed",
+                "loose",
+                P,
+                R,
+              ],
+            },
+          ],
+          "list-image": [{ "list-image": ["none", R] }],
+          "list-style-type": [{ list: ["none", "disc", "decimal", R] }],
+          "list-style-position": [{ list: ["inside", "outside"] }],
+          "placeholder-color": [{ placeholder: [e] }],
+          "placeholder-opacity": [{ "placeholder-opacity": [h] }],
+          "text-alignment": [
+            { text: ["left", "center", "right", "justify", "start", "end"] },
+          ],
+          "text-color": [{ text: [e] }],
+          "text-opacity": [{ "text-opacity": [h] }],
+          "text-decoration": [
+            "underline",
+            "overline",
+            "line-through",
+            "no-underline",
+          ],
+          "text-decoration-style": [
+            {
+              decoration: [
+                "solid",
+                "dashed",
+                "dotted",
+                "double",
+                "none",
+                "wavy",
+              ],
+            },
+          ],
+          "text-decoration-thickness": [
+            { decoration: ["auto", "from-font", P, S] },
+          ],
+          "underline-offset": [{ "underline-offset": ["auto", P, R] }],
+          "text-decoration-color": [{ decoration: [e] }],
+          "text-transform": [
+            "uppercase",
+            "lowercase",
+            "capitalize",
+            "normal-case",
+          ],
+          "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
+          "text-wrap": [{ text: ["wrap", "nowrap", "balance", "pretty"] }],
+          indent: [{ indent: E() }],
+          "vertical-align": [
+            {
+              align: [
+                "baseline",
+                "top",
+                "middle",
+                "bottom",
+                "text-top",
+                "text-bottom",
+                "sub",
+                "super",
+                R,
+              ],
+            },
+          ],
+          whitespace: [
+            {
+              whitespace: [
+                "normal",
+                "nowrap",
+                "pre",
+                "pre-line",
+                "pre-wrap",
+                "break-spaces",
+              ],
+            },
+          ],
+          break: [{ break: ["normal", "words", "all", "keep"] }],
+          hyphens: [{ hyphens: ["none", "manual", "auto"] }],
+          content: [{ content: ["none", R] }],
+          "bg-attachment": [{ bg: ["fixed", "local", "scroll"] }],
+          "bg-clip": [{ "bg-clip": ["border", "padding", "content", "text"] }],
+          "bg-opacity": [{ "bg-opacity": [h] }],
+          "bg-origin": [{ "bg-origin": ["border", "padding", "content"] }],
+          "bg-position": [
+            {
+              bg: [
+                "bottom",
+                "center",
+                "left",
+                "left-bottom",
+                "left-top",
+                "right",
+                "right-bottom",
+                "right-top",
+                "top",
+                B,
+              ],
+            },
+          ],
+          "bg-repeat": [
+            { bg: ["no-repeat", { repeat: ["", "x", "y", "round", "space"] }] },
+          ],
+          "bg-size": [{ bg: ["auto", "cover", "contain", q] }],
+          "bg-image": [
+            {
+              bg: [
+                "none",
+                { "gradient-to": ["t", "tr", "r", "br", "b", "bl", "l", "tl"] },
+                _,
+              ],
+            },
+          ],
+          "bg-color": [{ bg: [e] }],
+          "gradient-from-pos": [{ from: [f] }],
+          "gradient-via-pos": [{ via: [f] }],
+          "gradient-to-pos": [{ to: [f] }],
+          "gradient-from": [{ from: [b] }],
+          "gradient-via": [{ via: [b] }],
+          "gradient-to": [{ to: [b] }],
+          rounded: [{ rounded: [l] }],
+          "rounded-s": [{ "rounded-s": [l] }],
+          "rounded-e": [{ "rounded-e": [l] }],
+          "rounded-t": [{ "rounded-t": [l] }],
+          "rounded-r": [{ "rounded-r": [l] }],
+          "rounded-b": [{ "rounded-b": [l] }],
+          "rounded-l": [{ "rounded-l": [l] }],
+          "rounded-ss": [{ "rounded-ss": [l] }],
+          "rounded-se": [{ "rounded-se": [l] }],
+          "rounded-ee": [{ "rounded-ee": [l] }],
+          "rounded-es": [{ "rounded-es": [l] }],
+          "rounded-tl": [{ "rounded-tl": [l] }],
+          "rounded-tr": [{ "rounded-tr": [l] }],
+          "rounded-br": [{ "rounded-br": [l] }],
+          "rounded-bl": [{ "rounded-bl": [l] }],
+          "border-w": [{ border: [a] }],
+          "border-w-x": [{ "border-x": [a] }],
+          "border-w-y": [{ "border-y": [a] }],
+          "border-w-s": [{ "border-s": [a] }],
+          "border-w-e": [{ "border-e": [a] }],
+          "border-w-t": [{ "border-t": [a] }],
+          "border-w-r": [{ "border-r": [a] }],
+          "border-w-b": [{ "border-b": [a] }],
+          "border-w-l": [{ "border-l": [a] }],
+          "border-opacity": [{ "border-opacity": [h] }],
+          "border-style": [
+            {
+              border: ["solid", "dashed", "dotted", "double", "none", "hidden"],
+            },
+          ],
+          "divide-x": [{ "divide-x": [a] }],
+          "divide-x-reverse": ["divide-x-reverse"],
+          "divide-y": [{ "divide-y": [a] }],
+          "divide-y-reverse": ["divide-y-reverse"],
+          "divide-opacity": [{ "divide-opacity": [h] }],
+          "divide-style": [
+            { divide: ["solid", "dashed", "dotted", "double", "none"] },
+          ],
+          "border-color": [{ border: [n] }],
+          "border-color-x": [{ "border-x": [n] }],
+          "border-color-y": [{ "border-y": [n] }],
+          "border-color-s": [{ "border-s": [n] }],
+          "border-color-e": [{ "border-e": [n] }],
+          "border-color-t": [{ "border-t": [n] }],
+          "border-color-r": [{ "border-r": [n] }],
+          "border-color-b": [{ "border-b": [n] }],
+          "border-color-l": [{ "border-l": [n] }],
+          "divide-color": [{ divide: [n] }],
+          "outline-style": [
+            { outline: ["", "solid", "dashed", "dotted", "double", "none"] },
+          ],
+          "outline-offset": [{ "outline-offset": [P, R] }],
+          "outline-w": [{ outline: [P, S] }],
+          "outline-color": [{ outline: [e] }],
+          "ring-w": [{ ring: G() }],
+          "ring-w-inset": ["ring-inset"],
+          "ring-color": [{ ring: [e] }],
+          "ring-opacity": [{ "ring-opacity": [h] }],
+          "ring-offset-w": [{ "ring-offset": [P, S] }],
+          "ring-offset-color": [{ "ring-offset": [e] }],
+          shadow: [{ shadow: ["", "inner", "none", T, A] }],
+          "shadow-color": [{ shadow: [F] }],
+          opacity: [{ opacity: [h] }],
+          "mix-blend": [
+            {
+              "mix-blend": [
+                "normal",
+                "multiply",
+                "screen",
+                "overlay",
+                "darken",
+                "lighten",
+                "color-dodge",
+                "color-burn",
+                "hard-light",
+                "soft-light",
+                "difference",
+                "exclusion",
+                "hue",
+                "saturation",
+                "color",
+                "luminosity",
+                "plus-lighter",
+                "plus-darker",
+              ],
+            },
+          ],
+          "bg-blend": [
+            {
+              "bg-blend": [
+                "normal",
+                "multiply",
+                "screen",
+                "overlay",
+                "darken",
+                "lighten",
+                "color-dodge",
+                "color-burn",
+                "hard-light",
+                "soft-light",
+                "difference",
+                "exclusion",
+                "hue",
+                "saturation",
+                "color",
+                "luminosity",
+              ],
+            },
+          ],
+          filter: [{ filter: ["", "none"] }],
+          blur: [{ blur: [o] }],
+          brightness: [{ brightness: [t] }],
+          contrast: [{ contrast: [i] }],
+          "drop-shadow": [{ "drop-shadow": ["", "none", T, R] }],
+          grayscale: [{ grayscale: [d] }],
+          "hue-rotate": [{ "hue-rotate": [c] }],
+          invert: [{ invert: [p] }],
+          saturate: [{ saturate: [x] }],
+          sepia: [{ sepia: [k] }],
+          "backdrop-filter": [{ "backdrop-filter": ["", "none"] }],
+          "backdrop-blur": [{ "backdrop-blur": [o] }],
+          "backdrop-brightness": [{ "backdrop-brightness": [t] }],
+          "backdrop-contrast": [{ "backdrop-contrast": [i] }],
+          "backdrop-grayscale": [{ "backdrop-grayscale": [d] }],
+          "backdrop-hue-rotate": [{ "backdrop-hue-rotate": [c] }],
+          "backdrop-invert": [{ "backdrop-invert": [p] }],
+          "backdrop-opacity": [{ "backdrop-opacity": [h] }],
+          "backdrop-saturate": [{ "backdrop-saturate": [x] }],
+          "backdrop-sepia": [{ "backdrop-sepia": [k] }],
+          "border-collapse": [{ border: ["collapse", "separate"] }],
+          "border-spacing": [{ "border-spacing": [s] }],
+          "border-spacing-x": [{ "border-spacing-x": [s] }],
+          "border-spacing-y": [{ "border-spacing-y": [s] }],
+          "table-layout": [{ table: ["auto", "fixed"] }],
+          caption: [{ caption: ["top", "bottom"] }],
+          transition: [
+            {
+              transition: [
+                "none",
+                "all",
+                "",
+                "colors",
+                "opacity",
+                "shadow",
+                "transform",
+                R,
+              ],
+            },
+          ],
+          duration: [{ duration: H() }],
+          ease: [{ ease: ["linear", "in", "out", "in-out", R] }],
+          delay: [{ delay: H() }],
+          animate: [
+            { animate: ["none", "spin", "ping", "pulse", "bounce", R] },
+          ],
+          transform: [{ transform: ["", "gpu", "none"] }],
+          scale: [{ scale: [w] }],
+          "scale-x": [{ "scale-x": [w] }],
+          "scale-y": [{ "scale-y": [w] }],
+          rotate: [{ rotate: [$, R] }],
+          "translate-x": [{ "translate-x": [C] }],
+          "translate-y": [{ "translate-y": [C] }],
+          "skew-x": [{ "skew-x": [z] }],
+          "skew-y": [{ "skew-y": [z] }],
+          "transform-origin": [
+            {
+              origin: [
+                "center",
+                "top",
+                "top-right",
+                "right",
+                "bottom-right",
+                "bottom",
+                "bottom-left",
+                "left",
+                "top-left",
+                R,
+              ],
+            },
+          ],
+          accent: [{ accent: ["auto", e] }],
+          appearance: [{ appearance: ["none", "auto"] }],
+          cursor: [
+            {
+              cursor: [
+                "auto",
+                "default",
+                "pointer",
+                "wait",
+                "text",
+                "move",
+                "help",
+                "not-allowed",
+                "none",
+                "context-menu",
+                "progress",
+                "cell",
+                "crosshair",
+                "vertical-text",
+                "alias",
+                "copy",
+                "no-drop",
+                "grab",
+                "grabbing",
+                "all-scroll",
+                "col-resize",
+                "row-resize",
+                "n-resize",
+                "e-resize",
+                "s-resize",
+                "w-resize",
+                "ne-resize",
+                "nw-resize",
+                "se-resize",
+                "sw-resize",
+                "ew-resize",
+                "ns-resize",
+                "nesw-resize",
+                "nwse-resize",
+                "zoom-in",
+                "zoom-out",
+                R,
+              ],
+            },
+          ],
+          "caret-color": [{ caret: [e] }],
+          "pointer-events": [{ "pointer-events": ["none", "auto"] }],
+          resize: [{ resize: ["none", "y", "x", ""] }],
+          "scroll-behavior": [{ scroll: ["auto", "smooth"] }],
+          "scroll-m": [{ "scroll-m": E() }],
+          "scroll-mx": [{ "scroll-mx": E() }],
+          "scroll-my": [{ "scroll-my": E() }],
+          "scroll-ms": [{ "scroll-ms": E() }],
+          "scroll-me": [{ "scroll-me": E() }],
+          "scroll-mt": [{ "scroll-mt": E() }],
+          "scroll-mr": [{ "scroll-mr": E() }],
+          "scroll-mb": [{ "scroll-mb": E() }],
+          "scroll-ml": [{ "scroll-ml": E() }],
+          "scroll-p": [{ "scroll-p": E() }],
+          "scroll-px": [{ "scroll-px": E() }],
+          "scroll-py": [{ "scroll-py": E() }],
+          "scroll-ps": [{ "scroll-ps": E() }],
+          "scroll-pe": [{ "scroll-pe": E() }],
+          "scroll-pt": [{ "scroll-pt": E() }],
+          "scroll-pr": [{ "scroll-pr": E() }],
+          "scroll-pb": [{ "scroll-pb": E() }],
+          "scroll-pl": [{ "scroll-pl": E() }],
+          "snap-align": [{ snap: ["start", "end", "center", "align-none"] }],
+          "snap-stop": [{ snap: ["normal", "always"] }],
+          "snap-type": [{ snap: ["none", "x", "y", "both"] }],
+          "snap-strictness": [{ snap: ["mandatory", "proximity"] }],
+          touch: [{ touch: ["auto", "none", "manipulation"] }],
+          "touch-x": [{ "touch-pan": ["x", "left", "right"] }],
+          "touch-y": [{ "touch-pan": ["y", "up", "down"] }],
+          "touch-pz": ["touch-pinch-zoom"],
+          select: [{ select: ["none", "text", "all", "auto"] }],
+          "will-change": [
+            { "will-change": ["auto", "scroll", "contents", "transform", R] },
+          ],
+          fill: [{ fill: [e, "none"] }],
+          "stroke-w": [{ stroke: [P, S, M] }],
+          stroke: [{ stroke: [e, "none"] }],
+          sr: ["sr-only", "not-sr-only"],
+          "forced-color-adjust": [{ "forced-color-adjust": ["auto", "none"] }],
+        },
+        conflictingClassGroups: {
+          overflow: ["overflow-x", "overflow-y"],
+          overscroll: ["overscroll-x", "overscroll-y"],
+          inset: [
+            "inset-x",
+            "inset-y",
+            "start",
+            "end",
+            "top",
+            "right",
+            "bottom",
+            "left",
+          ],
+          "inset-x": ["right", "left"],
+          "inset-y": ["top", "bottom"],
+          flex: ["basis", "grow", "shrink"],
+          gap: ["gap-x", "gap-y"],
+          p: ["px", "py", "ps", "pe", "pt", "pr", "pb", "pl"],
+          px: ["pr", "pl"],
+          py: ["pt", "pb"],
+          m: ["mx", "my", "ms", "me", "mt", "mr", "mb", "ml"],
+          mx: ["mr", "ml"],
+          my: ["mt", "mb"],
+          size: ["w", "h"],
+          "font-size": ["leading"],
+          "fvn-normal": [
+            "fvn-ordinal",
+            "fvn-slashed-zero",
+            "fvn-figure",
+            "fvn-spacing",
+            "fvn-fraction",
+          ],
+          "fvn-ordinal": ["fvn-normal"],
+          "fvn-slashed-zero": ["fvn-normal"],
+          "fvn-figure": ["fvn-normal"],
+          "fvn-spacing": ["fvn-normal"],
+          "fvn-fraction": ["fvn-normal"],
+          "line-clamp": ["display", "overflow"],
+          rounded: [
+            "rounded-s",
+            "rounded-e",
+            "rounded-t",
+            "rounded-r",
+            "rounded-b",
+            "rounded-l",
+            "rounded-ss",
+            "rounded-se",
+            "rounded-ee",
+            "rounded-es",
+            "rounded-tl",
+            "rounded-tr",
+            "rounded-br",
+            "rounded-bl",
+          ],
+          "rounded-s": ["rounded-ss", "rounded-es"],
+          "rounded-e": ["rounded-se", "rounded-ee"],
+          "rounded-t": ["rounded-tl", "rounded-tr"],
+          "rounded-r": ["rounded-tr", "rounded-br"],
+          "rounded-b": ["rounded-br", "rounded-bl"],
+          "rounded-l": ["rounded-tl", "rounded-bl"],
+          "border-spacing": ["border-spacing-x", "border-spacing-y"],
+          "border-w": [
+            "border-w-s",
+            "border-w-e",
+            "border-w-t",
+            "border-w-r",
+            "border-w-b",
+            "border-w-l",
+          ],
+          "border-w-x": ["border-w-r", "border-w-l"],
+          "border-w-y": ["border-w-t", "border-w-b"],
+          "border-color": [
+            "border-color-s",
+            "border-color-e",
+            "border-color-t",
+            "border-color-r",
+            "border-color-b",
+            "border-color-l",
+          ],
+          "border-color-x": ["border-color-r", "border-color-l"],
+          "border-color-y": ["border-color-t", "border-color-b"],
+          "scroll-m": [
+            "scroll-mx",
+            "scroll-my",
+            "scroll-ms",
+            "scroll-me",
+            "scroll-mt",
+            "scroll-mr",
+            "scroll-mb",
+            "scroll-ml",
+          ],
+          "scroll-mx": ["scroll-mr", "scroll-ml"],
+          "scroll-my": ["scroll-mt", "scroll-mb"],
+          "scroll-p": [
+            "scroll-px",
+            "scroll-py",
+            "scroll-ps",
+            "scroll-pe",
+            "scroll-pt",
+            "scroll-pr",
+            "scroll-pb",
+            "scroll-pl",
+          ],
+          "scroll-px": ["scroll-pr", "scroll-pl"],
+          "scroll-py": ["scroll-pt", "scroll-pb"],
+          touch: ["touch-x", "touch-y", "touch-pz"],
+          "touch-x": ["touch"],
+          "touch-y": ["touch"],
+          "touch-pz": ["touch"],
+        },
+        conflictingClassGroupModifiers: { "font-size": ["leading"] },
+      };
+    });
+  function U() {
+    for (var e = [], r = 0; r < arguments.length; r++) e[r] = arguments[r];
+    return Q(
+      (function () {
+        for (var e, r, o = 0, n = "", l = arguments.length; o < l; o++)
+          (e = arguments[o]) && (r = t(e)) && (n && (n += " "), (n += r));
+        return n;
+      })(e)
+    );
+  }
+  return function (e) {
+    var r = e.dealershipName,
+      t = void 0 === r ? "" : r,
+      n = e.className,
+      l = void 0 === n ? "" : n,
+      s = new Date().getFullYear();
+    return o.default.createElement(
+      "div",
+      {
+        className: U(
+          "flex flex-col md:flex-row w-full gap-1 items-center justify-center sub-footer",
+          l
+        ),
+      },
+      o.default.createElement(
+        "div",
+        { className: "flex items-center justify-center" },
+        "© ",
+        s,
+        " ",
+        t || "Default Dealership"
+      ),
+      o.default.createElement(
+        "div",
+        { className: "flex flex-wrap items-center justify-center" },
+        o.default.createElement(
+          "span",
+          { className: "separator hidden md:inline" },
+          "|"
+        ),
+        o.default.createElement("a", { href: "/privacy" }, "Privacy & Policy"),
+        o.default.createElement("span", { className: "separator" }, "|"),
+        o.default.createElement(
+          "span",
+          { className: "flex" },
+          "Powered by",
+          " ",
+          o.default.createElement(
+            "a",
+            {
+              href: "https://www.hillzdealer.com/",
+              target: "_blank",
+              rel: "noopener noreferrer",
+            },
+            "Hillz"
+          ),
+          o.default.createElement("img", {
+            src: "./hillz-logo.webp",
+            alt: "Hillz Logo",
+            style: { width: 20, height: 20 },
+          })
+        )
+      )
+    );
+  };
+});
