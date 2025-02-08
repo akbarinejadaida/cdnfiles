@@ -58,9 +58,13 @@
     "footer": {
       "contactInfo": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/contact-info/contact-info.js"
+      },
+      "subFooter": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/sub-footer/sub-footer.js"
       }
     },
     "header": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.js",
       "information": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/information/information.js"
       },
