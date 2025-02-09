@@ -70,6 +70,9 @@
       },
       "logo": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logo.js"
+      },
+      "logoSkeleton": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logoSkeleton.js"
       }
     }
   }
