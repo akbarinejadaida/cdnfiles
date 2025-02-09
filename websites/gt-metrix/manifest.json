@@ -67,11 +67,15 @@
       }
     },
     "header": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.js",
       "information": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/information/information.js"
       },
       "logo": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logo.js"
+      },
+      "logoSkeleton": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logoSkeleton.js"
       }
     }
   }
