@@ -61,6 +61,9 @@
       },
       "subFooter": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/sub-footer/sub-footer.js"
+      },
+      "Content": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/content/content.js"
       }
     },
     "header": {
@@ -70,6 +73,9 @@
       },
       "logo": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logo.js"
+      },
+      "logoSkeleton": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logoSkeleton.js"
       }
     }
   }
