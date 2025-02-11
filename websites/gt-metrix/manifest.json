@@ -68,6 +68,9 @@
     },
     "header": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.js",
+      "navbar": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/hoverable-navbar.js"
+      },
       "information": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/information/information.js"
       },
