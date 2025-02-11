@@ -51,6 +51,9 @@
   "shared": {
     "navLink": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
+    },
+    "typoGeraphy": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
     }
   },
   "layout": {
