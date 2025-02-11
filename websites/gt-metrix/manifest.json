@@ -78,5 +78,10 @@
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logoSkeleton.js"
       }
     }
+  },
+  "shared": {
+    "typoGerapy": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
+    }
   }
 }
