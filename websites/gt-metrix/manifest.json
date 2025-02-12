@@ -48,13 +48,15 @@
       "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
     }
   },
-  "layout": {
-    "navbar": {
-      "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/navbar.js",
-      "navLink": {
-        "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
-      }
+  "shared": {
+    "navLink": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
     },
+    "typoGeraphy": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
+    }
+  },
+  "layout": {
     "footer": {
       "contactInfo": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/contact-info/contact-info.js"
@@ -68,6 +70,12 @@
     },
     "header": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.js",
+      "navbar": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/hoverable-navbar.js"
+      },
+      "menu": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/menu.js"
+      },
       "information": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/information/information.js"
       },
@@ -77,11 +85,6 @@
       "logoSkeleton": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/logo/logoSkeleton.js"
       }
-    }
-  },
-  "shared": {
-    "typoGerapy": {
-      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
     }
   }
 }
