@@ -73,6 +73,9 @@
       "navbar": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/hoverable-navbar.js"
       },
+      "menu": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/menu.js"
+      },
       "information": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/information/information.js"
       },
