@@ -1,23 +1,23 @@
-!(function (e, o) {
+!(function (e, r) {
   "object" == typeof exports && "undefined" != typeof module
-    ? o(exports, require("react"))
+    ? r(exports, require("react"), require("react-dom/client"))
     : "function" == typeof define && define.amd
-    ? define(["exports", "react"], o)
-    : o(
+    ? define(["exports", "react", "react-dom/client"], r)
+    : r(
         ((e =
           "undefined" != typeof globalThis
             ? globalThis
             : e || self).ContactInformation = {}),
         e.React
       );
-})(this, function (e, o) {
+})(this, function (e, r) {
   "use strict";
-  function r(e) {
+  function o(e) {
     return e && "object" == typeof e && "default" in e ? e : { default: e };
   }
-  var t = r(o);
-  function n(e, o, r, t) {
-    return new (r || (r = Promise))(function (n, l) {
+  var t = o(r);
+  function n(e, r, o, t) {
+    return new (o || (o = Promise))(function (n, l) {
       function a(e) {
         try {
           i(t.next(e));
@@ -33,21 +33,21 @@
         }
       }
       function i(e) {
-        var o;
+        var r;
         e.done
           ? n(e.value)
-          : ((o = e.value),
-            o instanceof r
-              ? o
-              : new r(function (e) {
-                  e(o);
+          : ((r = e.value),
+            r instanceof o
+              ? r
+              : new o(function (e) {
+                  e(r);
                 })).then(a, s);
       }
-      i((t = t.apply(e, o || [])).next());
+      i((t = t.apply(e, r || [])).next());
     });
   }
-  function l(e, o) {
-    var r,
+  function l(e, r) {
+    var o,
       t,
       n,
       l = {
@@ -75,11 +75,11 @@
     function s(s) {
       return function (i) {
         return (function (s) {
-          if (r) throw new TypeError("Generator is already executing.");
+          if (o) throw new TypeError("Generator is already executing.");
           for (; a && ((a = 0), s[0] && (l = 0)), l; )
             try {
               if (
-                ((r = 1),
+                ((o = 1),
                 t &&
                   (n =
                     2 & s[0]
@@ -127,11 +127,11 @@
                   n[2] && l.ops.pop(), l.trys.pop();
                   continue;
               }
-              s = o.call(e, l);
+              s = r.call(e, l);
             } catch (e) {
               (s = [6, e]), (t = 0);
             } finally {
-              r = n = 0;
+              o = n = 0;
             }
           if (5 & s[0]) throw s[1];
           return { value: s[0] ? s[1] : void 0, done: !0 };
@@ -140,98 +140,98 @@
     }
   }
   function a(e) {
-    var o,
-      r,
+    var r,
+      o,
       t = "";
     if ("string" == typeof e || "number" == typeof e) t += e;
     else if ("object" == typeof e)
       if (Array.isArray(e)) {
         var n = e.length;
-        for (o = 0; o < n; o++)
-          e[o] && (r = a(e[o])) && (t && (t += " "), (t += r));
-      } else for (r in e) e[r] && (t && (t += " "), (t += r));
+        for (r = 0; r < n; r++)
+          e[r] && (o = a(e[r])) && (t && (t += " "), (t += o));
+      } else for (o in e) e[o] && (t && (t += " "), (t += o));
     return t;
   }
   "function" == typeof SuppressedError && SuppressedError;
   const s = (e) => {
-      const o = u(e),
-        { conflictingClassGroups: r, conflictingClassGroupModifiers: t } = e;
+      const r = u(e),
+        { conflictingClassGroups: o, conflictingClassGroupModifiers: t } = e;
       return {
         getClassGroupId: (e) => {
-          const r = e.split("-");
-          return "" === r[0] && 1 !== r.length && r.shift(), i(r, o) || d(e);
+          const o = e.split("-");
+          return "" === o[0] && 1 !== o.length && o.shift(), i(o, r) || d(e);
         },
-        getConflictingClassGroupIds: (e, o) => {
-          const n = r[e] || [];
-          return o && t[e] ? [...n, ...t[e]] : n;
+        getConflictingClassGroupIds: (e, r) => {
+          const n = o[e] || [];
+          return r && t[e] ? [...n, ...t[e]] : n;
         },
       };
     },
-    i = (e, o) => {
-      if (0 === e.length) return o.classGroupId;
-      const r = e[0],
-        t = o.nextPart.get(r),
+    i = (e, r) => {
+      if (0 === e.length) return r.classGroupId;
+      const o = e[0],
+        t = r.nextPart.get(o),
         n = t ? i(e.slice(1), t) : void 0;
       if (n) return n;
-      if (0 === o.validators.length) return;
+      if (0 === r.validators.length) return;
       const l = e.join("-");
-      return o.validators.find(({ validator: e }) => e(l))?.classGroupId;
+      return r.validators.find(({ validator: e }) => e(l))?.classGroupId;
     },
     c = /^\[(.+)\]$/,
     d = (e) => {
       if (c.test(e)) {
-        const o = c.exec(e)[1],
-          r = o?.substring(0, o.indexOf(":"));
-        if (r) return "arbitrary.." + r;
+        const r = c.exec(e)[1],
+          o = r?.substring(0, r.indexOf(":"));
+        if (o) return "arbitrary.." + o;
       }
     },
     u = (e) => {
-      const { theme: o, prefix: r } = e,
+      const { theme: r, prefix: o } = e,
         t = { nextPart: new Map(), validators: [] };
       return (
-        m(Object.entries(e.classGroups), r).forEach(([e, r]) => {
-          p(r, t, e, o);
+        m(Object.entries(e.classGroups), o).forEach(([e, o]) => {
+          p(o, t, e, r);
         }),
         t
       );
     },
-    p = (e, o, r, t) => {
+    p = (e, r, o, t) => {
       e.forEach((e) => {
         if ("string" != typeof e) {
           if ("function" == typeof e)
-            return b(e)
-              ? void p(e(t), o, r, t)
-              : void o.validators.push({ validator: e, classGroupId: r });
+            return f(e)
+              ? void p(e(t), r, o, t)
+              : void r.validators.push({ validator: e, classGroupId: o });
           Object.entries(e).forEach(([e, n]) => {
-            p(n, f(o, e), r, t);
+            p(n, b(r, e), o, t);
           });
         } else {
-          ("" === e ? o : f(o, e)).classGroupId = r;
+          ("" === e ? r : b(r, e)).classGroupId = o;
         }
       });
     },
-    f = (e, o) => {
-      let r = e;
+    b = (e, r) => {
+      let o = e;
       return (
-        o.split("-").forEach((e) => {
-          r.nextPart.has(e) ||
-            r.nextPart.set(e, { nextPart: new Map(), validators: [] }),
-            (r = r.nextPart.get(e));
+        r.split("-").forEach((e) => {
+          o.nextPart.has(e) ||
+            o.nextPart.set(e, { nextPart: new Map(), validators: [] }),
+            (o = o.nextPart.get(e));
         }),
-        r
+        o
       );
     },
-    b = (e) => e.isThemeGetter,
-    m = (e, o) =>
-      o
-        ? e.map(([e, r]) => [
+    f = (e) => e.isThemeGetter,
+    m = (e, r) =>
+      r
+        ? e.map(([e, o]) => [
             e,
-            r.map((e) =>
+            o.map((e) =>
               "string" == typeof e
-                ? o + e
+                ? r + e
                 : "object" == typeof e
                 ? Object.fromEntries(
-                    Object.entries(e).map(([e, r]) => [o + e, r])
+                    Object.entries(e).map(([e, o]) => [r + e, o])
                   )
                 : e
             ),
@@ -239,41 +239,41 @@
         : e,
     g = (e) => {
       if (e < 1) return { get: () => {}, set: () => {} };
-      let o = 0,
-        r = new Map(),
+      let r = 0,
+        o = new Map(),
         t = new Map();
       const n = (n, l) => {
-        r.set(n, l), o++, o > e && ((o = 0), (t = r), (r = new Map()));
+        o.set(n, l), r++, r > e && ((r = 0), (t = o), (o = new Map()));
       };
       return {
         get(e) {
-          let o = r.get(e);
-          return void 0 !== o
-            ? o
-            : void 0 !== (o = t.get(e))
-            ? (n(e, o), o)
+          let r = o.get(e);
+          return void 0 !== r
+            ? r
+            : void 0 !== (r = t.get(e))
+            ? (n(e, r), r)
             : void 0;
         },
-        set(e, o) {
-          r.has(e) ? r.set(e, o) : n(e, o);
+        set(e, r) {
+          o.has(e) ? o.set(e, r) : n(e, r);
         },
       };
     },
     h = (e) => {
-      const { separator: o, experimentalParseClassName: r } = e,
-        t = 1 === o.length,
-        n = o[0],
-        l = o.length,
+      const { separator: r, experimentalParseClassName: o } = e,
+        t = 1 === r.length,
+        n = r[0],
+        l = r.length,
         a = (e) => {
-          const r = [];
+          const o = [];
           let a,
             s = 0,
             i = 0;
           for (let c = 0; c < e.length; c++) {
             let d = e[c];
             if (0 === s) {
-              if (d === n && (t || e.slice(c, c + l) === o)) {
-                r.push(e.slice(i, c)), (i = c + l);
+              if (d === n && (t || e.slice(c, c + l) === r)) {
+                o.push(e.slice(i, c)), (i = c + l);
                 continue;
               }
               if ("/" === d) {
@@ -283,112 +283,112 @@
             }
             "[" === d ? s++ : "]" === d && s--;
           }
-          const c = 0 === r.length ? e : e.substring(i),
+          const c = 0 === o.length ? e : e.substring(i),
             d = c.startsWith("!");
           return {
-            modifiers: r,
+            modifiers: o,
             hasImportantModifier: d,
             baseClassName: d ? c.substring(1) : c,
             maybePostfixModifierPosition: a && a > i ? a - i : void 0,
           };
         };
-      return r ? (e) => r({ className: e, parseClassName: a }) : a;
+      return o ? (e) => o({ className: e, parseClassName: a }) : a;
     },
-    v = (e) => {
+    y = (e) => {
       if (e.length <= 1) return e;
-      const o = [];
-      let r = [];
+      const r = [];
+      let o = [];
       return (
         e.forEach((e) => {
-          "[" === e[0] ? (o.push(...r.sort(), e), (r = [])) : r.push(e);
+          "[" === e[0] ? (r.push(...o.sort(), e), (o = [])) : o.push(e);
         }),
-        o.push(...r.sort()),
-        o
+        r.push(...o.sort()),
+        r
       );
     },
-    y = /\s+/;
+    v = /\s+/;
   function w() {
     let e,
-      o,
-      r = 0,
+      r,
+      o = 0,
       t = "";
-    for (; r < arguments.length; )
-      (e = arguments[r++]) && (o = x(e)) && (t && (t += " "), (t += o));
+    for (; o < arguments.length; )
+      (e = arguments[o++]) && (r = x(e)) && (t && (t += " "), (t += r));
     return t;
   }
   const x = (e) => {
     if ("string" == typeof e) return e;
-    let o,
-      r = "";
-    for (let t = 0; t < e.length; t++)
-      e[t] && (o = x(e[t])) && (r && (r += " "), (r += o));
-    return r;
-  };
-  function k(e, ...o) {
     let r,
+      o = "";
+    for (let t = 0; t < e.length; t++)
+      e[t] && (r = x(e[t])) && (o && (o += " "), (o += r));
+    return o;
+  };
+  function k(e, ...r) {
+    let o,
       t,
       n,
       l = function (i) {
-        const c = o.reduce((e, o) => o(e), e());
+        const c = r.reduce((e, r) => r(e), e());
         return (
-          (r = ((e) => ({
+          (o = ((e) => ({
             cache: g(e.cacheSize),
             parseClassName: h(e),
             ...s(e),
           }))(c)),
-          (t = r.cache.get),
-          (n = r.cache.set),
+          (t = o.cache.get),
+          (n = o.cache.set),
           (l = a),
           a(i)
         );
       };
     function a(e) {
-      const o = t(e);
-      if (o) return o;
-      const l = ((e, o) => {
+      const r = t(e);
+      if (r) return r;
+      const l = ((e, r) => {
         const {
-            parseClassName: r,
+            parseClassName: o,
             getClassGroupId: t,
             getConflictingClassGroupIds: n,
-          } = o,
+          } = r,
           l = [],
-          a = e.trim().split(y);
+          a = e.trim().split(v);
         let s = "";
         for (let e = a.length - 1; e >= 0; e -= 1) {
-          const o = a[e],
+          const r = a[e],
             {
               modifiers: i,
               hasImportantModifier: c,
               baseClassName: d,
               maybePostfixModifierPosition: u,
-            } = r(o);
+            } = o(r);
           let p = Boolean(u),
-            f = t(p ? d.substring(0, u) : d);
-          if (!f) {
+            b = t(p ? d.substring(0, u) : d);
+          if (!b) {
             if (!p) {
-              s = o + (s.length > 0 ? " " + s : s);
+              s = r + (s.length > 0 ? " " + s : s);
               continue;
             }
-            if (((f = t(d)), !f)) {
-              s = o + (s.length > 0 ? " " + s : s);
+            if (((b = t(d)), !b)) {
+              s = r + (s.length > 0 ? " " + s : s);
               continue;
             }
             p = !1;
           }
-          const b = v(i).join(":"),
-            m = c ? b + "!" : b,
-            g = m + f;
+          const f = y(i).join(":"),
+            m = c ? f + "!" : f,
+            g = m + b;
           if (l.includes(g)) continue;
           l.push(g);
-          const h = n(f, p);
+          const h = n(b, p);
           for (let e = 0; e < h.length; ++e) {
-            const o = h[e];
-            l.push(m + o);
+            const r = h[e];
+            l.push(m + r);
           }
-          s = o + (s.length > 0 ? " " + s : s);
+          s = r + (s.length > 0 ? " " + s : s);
         }
         return s;
-      })(e, r);
+      })(e, o);
       return n(e, l), l;
     }
     return function () {
@@ -396,49 +396,49 @@
     };
   }
   const z = (e) => {
-      const o = (o) => o[e] || [];
-      return (o.isThemeGetter = !0), o;
+      const r = (r) => r[e] || [];
+      return (r.isThemeGetter = !0), r;
     },
     j = /^\[(?:([a-z-]+):)?(.+)\]$/i,
     C = /^\d+\/\d+$/,
     N = new Set(["px", "full", "screen"]),
     E = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/,
-    S =
+    G =
       /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/,
-    G = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/,
+    S = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/,
     M = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/,
     P =
       /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/,
-    I = (e) => L(e) || N.has(e) || C.test(e),
+    I = (e) => O(e) || N.has(e) || C.test(e),
     R = (e) => J(e, "length", K),
-    L = (e) => Boolean(e) && !Number.isNaN(Number(e)),
-    O = (e) => J(e, "number", L),
+    O = (e) => Boolean(e) && !Number.isNaN(Number(e)),
+    L = (e) => J(e, "number", O),
     $ = (e) => Boolean(e) && Number.isInteger(Number(e)),
-    q = (e) => e.endsWith("%") && L(e.slice(0, -1)),
+    q = (e) => e.endsWith("%") && O(e.slice(0, -1)),
     T = (e) => j.test(e),
     _ = (e) => E.test(e),
-    B = new Set(["length", "size", "percentage"]),
-    U = (e) => J(e, B, Q),
-    W = (e) => J(e, "position", Q),
-    A = new Set(["image", "url"]),
-    D = (e) => J(e, A, X),
+    W = new Set(["length", "size", "percentage"]),
+    B = (e) => J(e, W, Q),
+    A = (e) => J(e, "position", Q),
+    D = new Set(["image", "url"]),
+    U = (e) => J(e, D, X),
     F = (e) => J(e, "", V),
     H = () => !0,
-    J = (e, o, r) => {
+    J = (e, r, o) => {
       const t = j.exec(e);
       return (
         !!t &&
-        (t[1] ? ("string" == typeof o ? t[1] === o : o.has(t[1])) : r(t[2]))
+        (t[1] ? ("string" == typeof r ? t[1] === r : r.has(t[1])) : o(t[2]))
       );
     },
-    K = (e) => S.test(e) && !G.test(e),
+    K = (e) => G.test(e) && !S.test(e),
     Q = () => !1,
     V = (e) => M.test(e),
     X = (e) => P.test(e),
     Y = k(() => {
       const e = z("colors"),
-        o = z("spacing"),
-        r = z("blur"),
+        r = z("spacing"),
+        o = z("blur"),
         t = z("brightness"),
         n = z("borderColor"),
         l = z("borderRadius"),
@@ -449,24 +449,24 @@
         d = z("hueRotate"),
         u = z("invert"),
         p = z("gap"),
-        f = z("gradientColorStops"),
-        b = z("gradientColorStopPositions"),
+        b = z("gradientColorStops"),
+        f = z("gradientColorStopPositions"),
         m = z("inset"),
         g = z("margin"),
         h = z("opacity"),
-        v = z("padding"),
-        y = z("saturate"),
+        y = z("padding"),
+        v = z("saturate"),
         w = z("scale"),
         x = z("sepia"),
         k = z("skew"),
         j = z("space"),
         C = z("translate"),
-        N = () => ["auto", T, o],
-        E = () => [T, o],
-        S = () => ["", I, R],
-        G = () => ["auto", L, T],
+        N = () => ["auto", T, r],
+        E = () => [T, r],
+        G = () => ["", I, R],
+        S = () => ["auto", O, T],
         M = () => ["", "0", T],
-        P = () => [L, T];
+        P = () => [O, T];
       return {
         cacheSize: 500,
         separator: ":",
@@ -478,7 +478,7 @@
           borderColor: [e],
           borderRadius: ["none", "", "full", _, T],
           borderSpacing: E(),
-          borderWidth: S(),
+          borderWidth: G(),
           contrast: P(),
           grayscale: M(),
           hueRotate: P(),
@@ -614,12 +614,12 @@
           order: [{ order: ["first", "last", "none", $, T] }],
           "grid-cols": [{ "grid-cols": [H] }],
           "col-start-end": [{ col: ["auto", { span: ["full", $, T] }, T] }],
-          "col-start": [{ "col-start": G() }],
-          "col-end": [{ "col-end": G() }],
+          "col-start": [{ "col-start": S() }],
+          "col-end": [{ "col-end": S() }],
           "grid-rows": [{ "grid-rows": [H] }],
           "row-start-end": [{ row: ["auto", { span: [$, T] }, T] }],
-          "row-start": [{ "row-start": G() }],
-          "row-end": [{ "row-end": G() }],
+          "row-start": [{ "row-start": S() }],
+          "row-end": [{ "row-end": S() }],
           "grid-flow": [
             { "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"] },
           ],
@@ -691,15 +691,15 @@
           "place-self": [
             { "place-self": ["auto", "start", "end", "center", "stretch"] },
           ],
-          p: [{ p: [v] }],
-          px: [{ px: [v] }],
-          py: [{ py: [v] }],
-          ps: [{ ps: [v] }],
-          pe: [{ pe: [v] }],
-          pt: [{ pt: [v] }],
-          pr: [{ pr: [v] }],
-          pb: [{ pb: [v] }],
-          pl: [{ pl: [v] }],
+          p: [{ p: [y] }],
+          px: [{ px: [y] }],
+          py: [{ py: [y] }],
+          ps: [{ ps: [y] }],
+          pe: [{ pe: [y] }],
+          pt: [{ pt: [y] }],
+          pr: [{ pr: [y] }],
+          pb: [{ pb: [y] }],
+          pl: [{ pl: [y] }],
           m: [{ m: [g] }],
           mx: [{ mx: [g] }],
           my: [{ my: [g] }],
@@ -713,13 +713,13 @@
           "space-x-reverse": ["space-x-reverse"],
           "space-y": [{ "space-y": [j] }],
           "space-y-reverse": ["space-y-reverse"],
-          w: [{ w: ["auto", "min", "max", "fit", "svw", "lvw", "dvw", T, o] }],
-          "min-w": [{ "min-w": [T, o, "min", "max", "fit"] }],
+          w: [{ w: ["auto", "min", "max", "fit", "svw", "lvw", "dvw", T, r] }],
+          "min-w": [{ "min-w": [T, r, "min", "max", "fit"] }],
           "max-w": [
             {
               "max-w": [
                 T,
-                o,
+                r,
                 "none",
                 "full",
                 "min",
@@ -731,14 +731,14 @@
               ],
             },
           ],
-          h: [{ h: [T, o, "auto", "min", "max", "fit", "svh", "lvh", "dvh"] }],
+          h: [{ h: [T, r, "auto", "min", "max", "fit", "svh", "lvh", "dvh"] }],
           "min-h": [
-            { "min-h": [T, o, "min", "max", "fit", "svh", "lvh", "dvh"] },
+            { "min-h": [T, r, "min", "max", "fit", "svh", "lvh", "dvh"] },
           ],
           "max-h": [
-            { "max-h": [T, o, "min", "max", "fit", "svh", "lvh", "dvh"] },
+            { "max-h": [T, r, "min", "max", "fit", "svh", "lvh", "dvh"] },
           ],
-          size: [{ size: [T, o, "auto", "min", "max", "fit"] }],
+          size: [{ size: [T, r, "auto", "min", "max", "fit"] }],
           "font-size": [{ text: ["base", _, R] }],
           "font-smoothing": ["antialiased", "subpixel-antialiased"],
           "font-style": ["italic", "not-italic"],
@@ -754,7 +754,7 @@
                 "bold",
                 "extrabold",
                 "black",
-                O,
+                L,
               ],
             },
           ],
@@ -778,7 +778,7 @@
               ],
             },
           ],
-          "line-clamp": [{ "line-clamp": ["none", L, O] }],
+          "line-clamp": [{ "line-clamp": ["none", O, L] }],
           leading: [
             {
               leading: [
@@ -881,30 +881,30 @@
                 "right-bottom",
                 "right-top",
                 "top",
-                W,
+                A,
               ],
             },
           ],
           "bg-repeat": [
             { bg: ["no-repeat", { repeat: ["", "x", "y", "round", "space"] }] },
           ],
-          "bg-size": [{ bg: ["auto", "cover", "contain", U] }],
+          "bg-size": [{ bg: ["auto", "cover", "contain", B] }],
           "bg-image": [
             {
               bg: [
                 "none",
                 { "gradient-to": ["t", "tr", "r", "br", "b", "bl", "l", "tl"] },
-                D,
+                U,
               ],
             },
           ],
           "bg-color": [{ bg: [e] }],
-          "gradient-from-pos": [{ from: [b] }],
-          "gradient-via-pos": [{ via: [b] }],
-          "gradient-to-pos": [{ to: [b] }],
-          "gradient-from": [{ from: [f] }],
-          "gradient-via": [{ via: [f] }],
-          "gradient-to": [{ to: [f] }],
+          "gradient-from-pos": [{ from: [f] }],
+          "gradient-via-pos": [{ via: [f] }],
+          "gradient-to-pos": [{ to: [f] }],
+          "gradient-from": [{ from: [b] }],
+          "gradient-via": [{ via: [b] }],
+          "gradient-to": [{ to: [b] }],
           rounded: [{ rounded: [l] }],
           "rounded-s": [{ "rounded-s": [l] }],
           "rounded-e": [{ "rounded-e": [l] }],
@@ -959,7 +959,7 @@
           "outline-offset": [{ "outline-offset": [I, T] }],
           "outline-w": [{ outline: [I, R] }],
           "outline-color": [{ outline: [e] }],
-          "ring-w": [{ ring: S() }],
+          "ring-w": [{ ring: G() }],
           "ring-w-inset": ["ring-inset"],
           "ring-color": [{ ring: [e] }],
           "ring-opacity": [{ "ring-opacity": [h] }],
@@ -1015,24 +1015,24 @@
             },
           ],
           filter: [{ filter: ["", "none"] }],
-          blur: [{ blur: [r] }],
+          blur: [{ blur: [o] }],
           brightness: [{ brightness: [t] }],
           contrast: [{ contrast: [i] }],
           "drop-shadow": [{ "drop-shadow": ["", "none", _, T] }],
           grayscale: [{ grayscale: [c] }],
           "hue-rotate": [{ "hue-rotate": [d] }],
           invert: [{ invert: [u] }],
-          saturate: [{ saturate: [y] }],
+          saturate: [{ saturate: [v] }],
           sepia: [{ sepia: [x] }],
           "backdrop-filter": [{ "backdrop-filter": ["", "none"] }],
-          "backdrop-blur": [{ "backdrop-blur": [r] }],
+          "backdrop-blur": [{ "backdrop-blur": [o] }],
           "backdrop-brightness": [{ "backdrop-brightness": [t] }],
           "backdrop-contrast": [{ "backdrop-contrast": [i] }],
           "backdrop-grayscale": [{ "backdrop-grayscale": [c] }],
           "backdrop-hue-rotate": [{ "backdrop-hue-rotate": [d] }],
           "backdrop-invert": [{ "backdrop-invert": [u] }],
           "backdrop-opacity": [{ "backdrop-opacity": [h] }],
-          "backdrop-saturate": [{ "backdrop-saturate": [y] }],
+          "backdrop-saturate": [{ "backdrop-saturate": [v] }],
           "backdrop-sepia": [{ "backdrop-sepia": [x] }],
           "border-collapse": [{ border: ["collapse", "separate"] }],
           "border-spacing": [{ "border-spacing": [a] }],
@@ -1165,7 +1165,7 @@
             { "will-change": ["auto", "scroll", "contents", "transform", T] },
           ],
           fill: [{ fill: [e, "none"] }],
-          "stroke-w": [{ stroke: [I, R, O] }],
+          "stroke-w": [{ stroke: [I, R, L] }],
           stroke: [{ stroke: [e, "none"] }],
           sr: ["sr-only", "not-sr-only"],
           "forced-color-adjust": [{ "forced-color-adjust": ["auto", "none"] }],
@@ -1284,44 +1284,41 @@
       };
     });
   function Z() {
-    for (var e = [], o = 0; o < arguments.length; o++) e[o] = arguments[o];
+    for (var e = [], r = 0; r < arguments.length; r++) e[r] = arguments[r];
     return Y(
       (function () {
-        for (var e, o, r = 0, t = "", n = arguments.length; r < n; r++)
-          (e = arguments[r]) && (o = a(e)) && (t && (t += " "), (t += o));
+        for (var e, r, o = 0, t = "", n = arguments.length; o < n; o++)
+          (e = arguments[o]) && (r = a(e)) && (t && (t += " "), (t += r));
         return t;
       })(e)
     );
   }
   (e.default = function (e) {
-    var r = e.address,
+    var o = e.address,
       a = e.contact,
       s = e.socialMediaLinks,
       i = e.className,
-      c = o.useState(null),
+      c = r.useState(null),
       d = c[0],
       u = c[1],
-      p = o.useRef(null),
-      f = o.useState(null),
-      b = f[0],
-      m = f[1],
-      g = o.useState(null),
-      h = g[0],
-      v = g[1];
+      p = r.useRef(null),
+      b = r.useState(null),
+      f = b[0],
+      m = b[1];
     if (
       (console.log({ manifest: d }),
-      o.useEffect(function () {
+      r.useEffect(function () {
         "undefined" != typeof window &&
           (window.React || (window.React = require("react")),
           window.ReactDOM || (window.ReactDOM = require("react-dom"))),
           (function () {
             return n(this, void 0, void 0, function () {
-              var e, o;
-              return l(this, function (r) {
-                switch (r.label) {
+              var e, r;
+              return l(this, function (o) {
+                switch (o.label) {
                   case 0:
                     return (
-                      r.trys.push([0, 3, , 4]),
+                      o.trys.push([0, 3, , 4]),
                       [
                         4,
                         fetch(
@@ -1330,15 +1327,15 @@
                       ]
                     );
                   case 1:
-                    if (!(e = r.sent()).ok)
+                    if (!(e = o.sent()).ok)
                       throw new Error("Network response was not ok");
                     return [4, e.json()];
                   case 2:
-                    return [2, r.sent()];
+                    return [2, o.sent()];
                   case 3:
                     return (
-                      (o = r.sent()),
-                      console.error("Failed to fetch manifest:", o),
+                      (r = o.sent()),
+                      console.error("Failed to fetch manifest:", r),
                       [3, 4]
                     );
                   case 4:
@@ -1350,59 +1347,36 @@
             u(e);
           });
       }, []),
-      o.useEffect(
+      r.useEffect(
         function () {
-          var e, o, r, t;
+          var e;
           if (d) {
-            var n =
-              null ===
-                (o =
-                  null === (e = null == d ? void 0 : d.layout) || void 0 === e
-                    ? void 0
-                    : e.navbar) || void 0 === o
-                ? void 0
-                : o.component;
-            if ("string" == typeof n)
-              console.log("NavBar component URL:", n),
-                ((l = document.createElement("script")).src = n),
-                (l.type = "module"),
-                (l.onload = function () {
-                  m(function () {
-                    return window.Navbar;
-                  });
-                }),
-                document.head.appendChild(l);
-            else console.error("Navbar component URL is not valid:", n);
-            var l,
-              a =
-                null ===
-                  (t =
-                    null === (r = null == d ? void 0 : d.layout) || void 0 === r
-                      ? void 0
-                      : r.navbar) || void 0 === t
+            var r =
+                null === (e = null == d ? void 0 : d.shared) || void 0 === e
                   ? void 0
-                  : t.navLink,
-              s = null == a ? void 0 : a.component;
-            if ("string" == typeof s)
-              console.log("NavLink component URL:", s),
-                ((l = document.createElement("script")).src = s),
-                (l.type = "module"),
-                (l.onload = function () {
-                  v(function () {
+                  : e.navLink,
+              o = null == r ? void 0 : r.component;
+            if ("string" == typeof o) {
+              console.log("NavLink component URL:", o);
+              var t = document.createElement("script");
+              (t.src = o),
+                (t.type = "module"),
+                (t.onload = function () {
+                  m(function () {
                     return window.NavLink;
                   });
                 }),
-                document.head.appendChild(l);
-            else console.error("NavLink component URL is not valid:", a);
+                document.head.appendChild(t);
+            } else console.error("NavLink component URL is not valid:", r);
           }
         },
         [d]
       ),
-      !b || !h)
+      console.log(f),
+      !f)
     )
       return t.default.createElement("p", null, "Loading...");
-    var y = b,
-      w = h;
+    var g = f;
     return t.default.createElement(
       "div",
       {
@@ -1412,12 +1386,11 @@
         ),
         ref: p,
       },
-      t.default.createElement(y, null),
       null == a
         ? void 0
         : a.map(function (e) {
             return t.default.createElement(
-              w,
+              g,
               {
                 key: e.number,
                 link: "tel:".concat(null == e ? void 0 : e.number),
@@ -1426,11 +1399,11 @@
               e.icon
             );
           }),
-      null == r
+      null == o
         ? void 0
-        : r.map(function (e) {
+        : o.map(function (e) {
             return t.default.createElement(
-              w,
+              g,
               { key: e.label, link: "/directions", label: e.label },
               e.icon
             );
@@ -1442,7 +1415,7 @@
           ? void 0
           : s.map(function (e) {
               return t.default.createElement(
-                w,
+                g,
                 {
                   key: e.platform,
                   href: e.url,
