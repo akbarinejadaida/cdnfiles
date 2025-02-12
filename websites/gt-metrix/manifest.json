@@ -70,6 +70,7 @@
     },
     "header": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.js",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.css",
       "navbar": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/hoverable-navbar.js"
       },
