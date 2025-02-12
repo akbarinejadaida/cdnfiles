@@ -52,6 +52,9 @@
     "navLink": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
     },
+    "workHours": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/work-hours/work-hours.js"
+    },
     "typoGeraphy": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
     }
