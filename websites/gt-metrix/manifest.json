@@ -56,6 +56,11 @@
     },
     "typoGeraphy": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
+    },
+    "form": {
+      "text": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/form/text-input/text-input.js"
+      }
     }
   },
   "layout": {
