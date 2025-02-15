@@ -12,9 +12,8 @@
       "favicon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK-Vg_IFRtnL2WQsSiJFML7R22xC8i0FL11w&s"
     },
     "slider": {
-      "component": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-2.js",
-      "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper.css",
-      "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.js",
+      "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.css"
     },
     "welcome": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome.js",
