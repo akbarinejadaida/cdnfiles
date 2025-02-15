@@ -180,6 +180,7 @@ header .information-container .work-hours .work-hours__time-table {
   width: 250px;
   padding: 10px;
   font-size: 11px;
+  z-index: 10;
 }
 
 header .information-container .work-hours .work-hours__time-table .time-table {
