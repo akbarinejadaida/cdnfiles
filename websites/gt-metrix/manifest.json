@@ -60,6 +60,9 @@
     "form": {
       "text": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/form/text-input/text-input.js"
+      },
+      "select": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/form/select-input/select-input.js"
       }
     }
   },
