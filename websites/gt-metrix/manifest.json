@@ -57,6 +57,9 @@
     "typoGeraphy": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
     },
+    "button": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/button/button.js"
+    },
     "form": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/form/form-maker/form-maker.js",
       "text": {
