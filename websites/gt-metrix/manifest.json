@@ -15,6 +15,9 @@
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.js",
       "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.css"
     },
+    "advance-filter": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/advance-filter/home/home-advance-filter.js"
+    },
     "welcome": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome.js",
       "style": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome-2.css"
