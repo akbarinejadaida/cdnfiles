@@ -28,6 +28,7 @@ header .Logo-container {
 
 header .Logo-container .logo {
   width: 220px !important;
+  height: 110px !important;
 }
 
 header .nav-container {
