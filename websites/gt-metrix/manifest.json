@@ -57,8 +57,8 @@
     "workHours": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/work-hours/work-hours.js"
     },
-    "typoGeraphy": {
-      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
+    "typography": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typography/typography.js"
     },
     "button": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/button/button.js"
