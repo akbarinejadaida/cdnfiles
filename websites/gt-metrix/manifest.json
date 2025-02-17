@@ -15,6 +15,11 @@
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.js",
       "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.css"
     },
+    "informationOverlay": {
+      "vehicleBrands": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/vehicle-brands/vehicle-brands.js"
+      }
+    },
     "advanceFilter": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/advance-filter/home/home-advance-filter.js"
     },
