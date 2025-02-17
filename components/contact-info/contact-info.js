@@ -1,279 +1,156 @@
-!(function (e, r) {
+!(function (e, o) {
   "object" == typeof exports && "undefined" != typeof module
-    ? r(exports, require("react"), require("react-dom/client"))
+    ? o(exports, require("react"), require("react-dom/client"))
     : "function" == typeof define && define.amd
-    ? define(["exports", "react", "react-dom/client"], r)
-    : r(
+    ? define(["exports", "react", "react-dom/client"], o)
+    : o(
         ((e =
           "undefined" != typeof globalThis
             ? globalThis
-            : e || self).ContactInformation = {}),
+            : e || self).contactInfo = {}),
         e.React
       );
-})(this, function (e, r) {
+})(this, function (e, o) {
   "use strict";
-  function o(e) {
+  function r(e) {
     return e && "object" == typeof e && "default" in e ? e : { default: e };
   }
-  var t = o(r);
-  function n(e, r, o, t) {
-    return new (o || (o = Promise))(function (n, l) {
-      function a(e) {
-        try {
-          i(t.next(e));
-        } catch (e) {
-          l(e);
-        }
-      }
-      function s(e) {
-        try {
-          i(t.throw(e));
-        } catch (e) {
-          l(e);
-        }
-      }
-      function i(e) {
-        var r;
-        e.done
-          ? n(e.value)
-          : ((r = e.value),
-            r instanceof o
-              ? r
-              : new o(function (e) {
-                  e(r);
-                })).then(a, s);
-      }
-      i((t = t.apply(e, r || [])).next());
-    });
-  }
-  function l(e, r) {
+  var t = r(o);
+  function n(e) {
     var o,
-      t,
-      n,
-      l = {
-        label: 0,
-        sent: function () {
-          if (1 & n[0]) throw n[1];
-          return n[1];
-        },
-        trys: [],
-        ops: [],
-      },
-      a = Object.create(
-        ("function" == typeof Iterator ? Iterator : Object).prototype
-      );
-    return (
-      (a.next = s(0)),
-      (a.throw = s(1)),
-      (a.return = s(2)),
-      "function" == typeof Symbol &&
-        (a[Symbol.iterator] = function () {
-          return this;
-        }),
-      a
-    );
-    function s(s) {
-      return function (i) {
-        return (function (s) {
-          if (o) throw new TypeError("Generator is already executing.");
-          for (; a && ((a = 0), s[0] && (l = 0)), l; )
-            try {
-              if (
-                ((o = 1),
-                t &&
-                  (n =
-                    2 & s[0]
-                      ? t.return
-                      : s[0]
-                      ? t.throw || ((n = t.return) && n.call(t), 0)
-                      : t.next) &&
-                  !(n = n.call(t, s[1])).done)
-              )
-                return n;
-              switch (((t = 0), n && (s = [2 & s[0], n.value]), s[0])) {
-                case 0:
-                case 1:
-                  n = s;
-                  break;
-                case 4:
-                  return l.label++, { value: s[1], done: !1 };
-                case 5:
-                  l.label++, (t = s[1]), (s = [0]);
-                  continue;
-                case 7:
-                  (s = l.ops.pop()), l.trys.pop();
-                  continue;
-                default:
-                  if (
-                    !((n = l.trys),
-                    (n = n.length > 0 && n[n.length - 1]) ||
-                      (6 !== s[0] && 2 !== s[0]))
-                  ) {
-                    l = 0;
-                    continue;
-                  }
-                  if (3 === s[0] && (!n || (s[1] > n[0] && s[1] < n[3]))) {
-                    l.label = s[1];
-                    break;
-                  }
-                  if (6 === s[0] && l.label < n[1]) {
-                    (l.label = n[1]), (n = s);
-                    break;
-                  }
-                  if (n && l.label < n[2]) {
-                    (l.label = n[2]), l.ops.push(s);
-                    break;
-                  }
-                  n[2] && l.ops.pop(), l.trys.pop();
-                  continue;
-              }
-              s = r.call(e, l);
-            } catch (e) {
-              (s = [6, e]), (t = 0);
-            } finally {
-              o = n = 0;
-            }
-          if (5 & s[0]) throw s[1];
-          return { value: s[0] ? s[1] : void 0, done: !0 };
-        })([s, i]);
-      };
-    }
-  }
-  function a(e) {
-    var r,
-      o,
+      r,
       t = "";
     if ("string" == typeof e || "number" == typeof e) t += e;
     else if ("object" == typeof e)
       if (Array.isArray(e)) {
-        var n = e.length;
-        for (r = 0; r < n; r++)
-          e[r] && (o = a(e[r])) && (t && (t += " "), (t += o));
-      } else for (o in e) e[o] && (t && (t += " "), (t += o));
+        var l = e.length;
+        for (o = 0; o < l; o++)
+          e[o] && (r = n(e[o])) && (t && (t += " "), (t += r));
+      } else for (r in e) e[r] && (t && (t += " "), (t += r));
     return t;
   }
   "function" == typeof SuppressedError && SuppressedError;
-  const s = (e) => {
-      const r = u(e),
-        { conflictingClassGroups: o, conflictingClassGroupModifiers: t } = e;
+  const l = (e) => {
+      const o = c(e),
+        { conflictingClassGroups: r, conflictingClassGroupModifiers: t } = e;
       return {
         getClassGroupId: (e) => {
-          const o = e.split("-");
-          return "" === o[0] && 1 !== o.length && o.shift(), i(o, r) || d(e);
+          const r = e.split("-");
+          return "" === r[0] && 1 !== r.length && r.shift(), a(r, o) || i(e);
         },
-        getConflictingClassGroupIds: (e, r) => {
-          const n = o[e] || [];
-          return r && t[e] ? [...n, ...t[e]] : n;
+        getConflictingClassGroupIds: (e, o) => {
+          const n = r[e] || [];
+          return o && t[e] ? [...n, ...t[e]] : n;
         },
       };
     },
-    i = (e, r) => {
-      if (0 === e.length) return r.classGroupId;
-      const o = e[0],
-        t = r.nextPart.get(o),
-        n = t ? i(e.slice(1), t) : void 0;
+    a = (e, o) => {
+      if (0 === e.length) return o.classGroupId;
+      const r = e[0],
+        t = o.nextPart.get(r),
+        n = t ? a(e.slice(1), t) : void 0;
       if (n) return n;
-      if (0 === r.validators.length) return;
+      if (0 === o.validators.length) return;
       const l = e.join("-");
-      return r.validators.find(({ validator: e }) => e(l))?.classGroupId;
+      return o.validators.find(({ validator: e }) => e(l))?.classGroupId;
     },
-    c = /^\[(.+)\]$/,
-    d = (e) => {
-      if (c.test(e)) {
-        const r = c.exec(e)[1],
-          o = r?.substring(0, r.indexOf(":"));
-        if (o) return "arbitrary.." + o;
+    s = /^\[(.+)\]$/,
+    i = (e) => {
+      if (s.test(e)) {
+        const o = s.exec(e)[1],
+          r = o?.substring(0, o.indexOf(":"));
+        if (r) return "arbitrary.." + r;
       }
     },
-    u = (e) => {
-      const { theme: r, prefix: o } = e,
+    c = (e) => {
+      const { theme: o, prefix: r } = e,
         t = { nextPart: new Map(), validators: [] };
       return (
-        m(Object.entries(e.classGroups), o).forEach(([e, o]) => {
-          p(o, t, e, r);
+        b(Object.entries(e.classGroups), r).forEach(([e, r]) => {
+          d(r, t, e, o);
         }),
         t
       );
     },
-    p = (e, r, o, t) => {
+    d = (e, o, r, t) => {
       e.forEach((e) => {
         if ("string" != typeof e) {
           if ("function" == typeof e)
-            return f(e)
-              ? void p(e(t), r, o, t)
-              : void r.validators.push({ validator: e, classGroupId: o });
+            return p(e)
+              ? void d(e(t), o, r, t)
+              : void o.validators.push({ validator: e, classGroupId: r });
           Object.entries(e).forEach(([e, n]) => {
-            p(n, b(r, e), o, t);
+            d(n, u(o, e), r, t);
           });
         } else {
-          ("" === e ? r : b(r, e)).classGroupId = o;
+          ("" === e ? o : u(o, e)).classGroupId = r;
         }
       });
     },
-    b = (e, r) => {
-      let o = e;
+    u = (e, o) => {
+      let r = e;
       return (
-        r.split("-").forEach((e) => {
-          o.nextPart.has(e) ||
-            o.nextPart.set(e, { nextPart: new Map(), validators: [] }),
-            (o = o.nextPart.get(e));
+        o.split("-").forEach((e) => {
+          r.nextPart.has(e) ||
+            r.nextPart.set(e, { nextPart: new Map(), validators: [] }),
+            (r = r.nextPart.get(e));
         }),
-        o
+        r
       );
     },
-    f = (e) => e.isThemeGetter,
-    m = (e, r) =>
-      r
-        ? e.map(([e, o]) => [
+    p = (e) => e.isThemeGetter,
+    b = (e, o) =>
+      o
+        ? e.map(([e, r]) => [
             e,
-            o.map((e) =>
+            r.map((e) =>
               "string" == typeof e
-                ? r + e
+                ? o + e
                 : "object" == typeof e
                 ? Object.fromEntries(
-                    Object.entries(e).map(([e, o]) => [r + e, o])
+                    Object.entries(e).map(([e, r]) => [o + e, r])
                   )
                 : e
             ),
           ])
         : e,
-    g = (e) => {
+    f = (e) => {
       if (e < 1) return { get: () => {}, set: () => {} };
-      let r = 0,
-        o = new Map(),
+      let o = 0,
+        r = new Map(),
         t = new Map();
       const n = (n, l) => {
-        o.set(n, l), r++, r > e && ((r = 0), (t = o), (o = new Map()));
+        r.set(n, l), o++, o > e && ((o = 0), (t = r), (r = new Map()));
       };
       return {
         get(e) {
-          let r = o.get(e);
-          return void 0 !== r
-            ? r
-            : void 0 !== (r = t.get(e))
-            ? (n(e, r), r)
+          let o = r.get(e);
+          return void 0 !== o
+            ? o
+            : void 0 !== (o = t.get(e))
+            ? (n(e, o), o)
             : void 0;
         },
-        set(e, r) {
-          o.has(e) ? o.set(e, r) : n(e, r);
+        set(e, o) {
+          r.has(e) ? r.set(e, o) : n(e, o);
         },
       };
     },
-    h = (e) => {
-      const { separator: r, experimentalParseClassName: o } = e,
-        t = 1 === r.length,
-        n = r[0],
-        l = r.length,
+    m = (e) => {
+      const { separator: o, experimentalParseClassName: r } = e,
+        t = 1 === o.length,
+        n = o[0],
+        l = o.length,
         a = (e) => {
-          const o = [];
+          const r = [];
           let a,
             s = 0,
             i = 0;
           for (let c = 0; c < e.length; c++) {
             let d = e[c];
             if (0 === s) {
-              if (d === n && (t || e.slice(c, c + l) === r)) {
-                o.push(e.slice(i, c)), (i = c + l);
+              if (d === n && (t || e.slice(c, c + l) === o)) {
+                r.push(e.slice(i, c)), (i = c + l);
                 continue;
               }
               if ("/" === d) {
@@ -283,224 +160,224 @@
             }
             "[" === d ? s++ : "]" === d && s--;
           }
-          const c = 0 === o.length ? e : e.substring(i),
+          const c = 0 === r.length ? e : e.substring(i),
             d = c.startsWith("!");
           return {
-            modifiers: o,
+            modifiers: r,
             hasImportantModifier: d,
             baseClassName: d ? c.substring(1) : c,
             maybePostfixModifierPosition: a && a > i ? a - i : void 0,
           };
         };
-      return o ? (e) => o({ className: e, parseClassName: a }) : a;
+      return r ? (e) => r({ className: e, parseClassName: a }) : a;
     },
-    y = (e) => {
+    g = (e) => {
       if (e.length <= 1) return e;
-      const r = [];
-      let o = [];
+      const o = [];
+      let r = [];
       return (
         e.forEach((e) => {
-          "[" === e[0] ? (r.push(...o.sort(), e), (o = [])) : o.push(e);
+          "[" === e[0] ? (o.push(...r.sort(), e), (r = [])) : r.push(e);
         }),
-        r.push(...o.sort()),
-        r
+        o.push(...r.sort()),
+        o
       );
     },
-    v = /\s+/;
-  function w() {
+    h = /\s+/;
+  function v() {
     let e,
-      r,
-      o = 0,
+      o,
+      r = 0,
       t = "";
-    for (; o < arguments.length; )
-      (e = arguments[o++]) && (r = x(e)) && (t && (t += " "), (t += r));
+    for (; r < arguments.length; )
+      (e = arguments[r++]) && (o = y(e)) && (t && (t += " "), (t += o));
     return t;
   }
-  const x = (e) => {
+  const y = (e) => {
     if ("string" == typeof e) return e;
-    let r,
-      o = "";
-    for (let t = 0; t < e.length; t++)
-      e[t] && (r = x(e[t])) && (o && (o += " "), (o += r));
-    return o;
-  };
-  function k(e, ...r) {
     let o,
+      r = "";
+    for (let t = 0; t < e.length; t++)
+      e[t] && (o = y(e[t])) && (r && (r += " "), (r += o));
+    return r;
+  };
+  function w(e, ...o) {
+    let r,
       t,
       n,
-      l = function (i) {
-        const c = r.reduce((e, r) => r(e), e());
+      a = function (i) {
+        const c = o.reduce((e, o) => o(e), e());
         return (
-          (o = ((e) => ({
-            cache: g(e.cacheSize),
-            parseClassName: h(e),
-            ...s(e),
+          (r = ((e) => ({
+            cache: f(e.cacheSize),
+            parseClassName: m(e),
+            ...l(e),
           }))(c)),
-          (t = o.cache.get),
-          (n = o.cache.set),
-          (l = a),
-          a(i)
+          (t = r.cache.get),
+          (n = r.cache.set),
+          (a = s),
+          s(i)
         );
       };
-    function a(e) {
-      const r = t(e);
-      if (r) return r;
-      const l = ((e, r) => {
+    function s(e) {
+      const o = t(e);
+      if (o) return o;
+      const l = ((e, o) => {
         const {
-            parseClassName: o,
+            parseClassName: r,
             getClassGroupId: t,
             getConflictingClassGroupIds: n,
-          } = r,
+          } = o,
           l = [],
-          a = e.trim().split(v);
+          a = e.trim().split(h);
         let s = "";
         for (let e = a.length - 1; e >= 0; e -= 1) {
-          const r = a[e],
+          const o = a[e],
             {
               modifiers: i,
               hasImportantModifier: c,
               baseClassName: d,
               maybePostfixModifierPosition: u,
-            } = o(r);
+            } = r(o);
           let p = Boolean(u),
             b = t(p ? d.substring(0, u) : d);
           if (!b) {
             if (!p) {
-              s = r + (s.length > 0 ? " " + s : s);
+              s = o + (s.length > 0 ? " " + s : s);
               continue;
             }
             if (((b = t(d)), !b)) {
-              s = r + (s.length > 0 ? " " + s : s);
+              s = o + (s.length > 0 ? " " + s : s);
               continue;
             }
             p = !1;
           }
-          const f = y(i).join(":"),
+          const f = g(i).join(":"),
             m = c ? f + "!" : f,
-            g = m + b;
-          if (l.includes(g)) continue;
-          l.push(g);
-          const h = n(b, p);
-          for (let e = 0; e < h.length; ++e) {
-            const r = h[e];
-            l.push(m + r);
+            h = m + b;
+          if (l.includes(h)) continue;
+          l.push(h);
+          const v = n(b, p);
+          for (let e = 0; e < v.length; ++e) {
+            const o = v[e];
+            l.push(m + o);
           }
-          s = r + (s.length > 0 ? " " + s : s);
+          s = o + (s.length > 0 ? " " + s : s);
         }
         return s;
-      })(e, o);
+      })(e, r);
       return n(e, l), l;
     }
     return function () {
-      return l(w.apply(null, arguments));
+      return a(v.apply(null, arguments));
     };
   }
-  const z = (e) => {
-      const r = (r) => r[e] || [];
-      return (r.isThemeGetter = !0), r;
+  const x = (e) => {
+      const o = (o) => o[e] || [];
+      return (o.isThemeGetter = !0), o;
     },
-    j = /^\[(?:([a-z-]+):)?(.+)\]$/i,
-    C = /^\d+\/\d+$/,
-    N = new Set(["px", "full", "screen"]),
-    E = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/,
-    G =
+    k = /^\[(?:([a-z-]+):)?(.+)\]$/i,
+    z = /^\d+\/\d+$/,
+    C = new Set(["px", "full", "screen"]),
+    j = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/,
+    E =
       /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/,
-    S = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/,
-    M = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/,
-    P =
+    N = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/,
+    S = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/,
+    G =
       /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/,
-    I = (e) => O(e) || N.has(e) || C.test(e),
-    R = (e) => J(e, "length", K),
-    O = (e) => Boolean(e) && !Number.isNaN(Number(e)),
-    L = (e) => J(e, "number", O),
-    $ = (e) => Boolean(e) && Number.isInteger(Number(e)),
-    q = (e) => e.endsWith("%") && O(e.slice(0, -1)),
-    T = (e) => j.test(e),
-    _ = (e) => E.test(e),
-    W = new Set(["length", "size", "percentage"]),
-    B = (e) => J(e, W, Q),
-    A = (e) => J(e, "position", Q),
-    D = new Set(["image", "url"]),
-    U = (e) => J(e, D, X),
-    F = (e) => J(e, "", V),
-    H = () => !0,
-    J = (e, r, o) => {
-      const t = j.exec(e);
+    M = (e) => P(e) || C.has(e) || z.test(e),
+    _ = (e) => H(e, "length", J),
+    P = (e) => Boolean(e) && !Number.isNaN(Number(e)),
+    I = (e) => H(e, "number", P),
+    R = (e) => Boolean(e) && Number.isInteger(Number(e)),
+    O = (e) => e.endsWith("%") && P(e.slice(0, -1)),
+    D = (e) => k.test(e),
+    $ = (e) => j.test(e),
+    q = new Set(["length", "size", "percentage"]),
+    A = (e) => H(e, q, K),
+    L = (e) => H(e, "position", K),
+    T = new Set(["image", "url"]),
+    W = (e) => H(e, T, U),
+    B = (e) => H(e, "", Q),
+    F = () => !0,
+    H = (e, o, r) => {
+      const t = k.exec(e);
       return (
         !!t &&
-        (t[1] ? ("string" == typeof r ? t[1] === r : r.has(t[1])) : o(t[2]))
+        (t[1] ? ("string" == typeof o ? t[1] === o : o.has(t[1])) : r(t[2]))
       );
     },
-    K = (e) => G.test(e) && !S.test(e),
-    Q = () => !1,
-    V = (e) => M.test(e),
-    X = (e) => P.test(e),
-    Y = k(() => {
-      const e = z("colors"),
-        r = z("spacing"),
-        o = z("blur"),
-        t = z("brightness"),
-        n = z("borderColor"),
-        l = z("borderRadius"),
-        a = z("borderSpacing"),
-        s = z("borderWidth"),
-        i = z("contrast"),
-        c = z("grayscale"),
-        d = z("hueRotate"),
-        u = z("invert"),
-        p = z("gap"),
-        b = z("gradientColorStops"),
-        f = z("gradientColorStopPositions"),
-        m = z("inset"),
-        g = z("margin"),
-        h = z("opacity"),
-        y = z("padding"),
-        v = z("saturate"),
-        w = z("scale"),
-        x = z("sepia"),
-        k = z("skew"),
-        j = z("space"),
-        C = z("translate"),
-        N = () => ["auto", T, r],
-        E = () => [T, r],
-        G = () => ["", I, R],
-        S = () => ["auto", O, T],
-        M = () => ["", "0", T],
-        P = () => [O, T];
+    J = (e) => E.test(e) && !N.test(e),
+    K = () => !1,
+    Q = (e) => S.test(e),
+    U = (e) => G.test(e),
+    V = w(() => {
+      const e = x("colors"),
+        o = x("spacing"),
+        r = x("blur"),
+        t = x("brightness"),
+        n = x("borderColor"),
+        l = x("borderRadius"),
+        a = x("borderSpacing"),
+        s = x("borderWidth"),
+        i = x("contrast"),
+        c = x("grayscale"),
+        d = x("hueRotate"),
+        u = x("invert"),
+        p = x("gap"),
+        b = x("gradientColorStops"),
+        f = x("gradientColorStopPositions"),
+        m = x("inset"),
+        g = x("margin"),
+        h = x("opacity"),
+        v = x("padding"),
+        y = x("saturate"),
+        w = x("scale"),
+        k = x("sepia"),
+        z = x("skew"),
+        C = x("space"),
+        j = x("translate"),
+        E = () => ["auto", D, o],
+        N = () => [D, o],
+        S = () => ["", M, _],
+        G = () => ["auto", P, D],
+        q = () => ["", "0", D],
+        T = () => [P, D];
       return {
         cacheSize: 500,
         separator: ":",
         theme: {
-          colors: [H],
-          spacing: [I, R],
-          blur: ["none", "", _, T],
-          brightness: P(),
+          colors: [F],
+          spacing: [M, _],
+          blur: ["none", "", $, D],
+          brightness: T(),
           borderColor: [e],
-          borderRadius: ["none", "", "full", _, T],
-          borderSpacing: E(),
-          borderWidth: G(),
-          contrast: P(),
-          grayscale: M(),
-          hueRotate: P(),
-          invert: M(),
-          gap: E(),
+          borderRadius: ["none", "", "full", $, D],
+          borderSpacing: N(),
+          borderWidth: S(),
+          contrast: T(),
+          grayscale: q(),
+          hueRotate: T(),
+          invert: q(),
+          gap: N(),
           gradientColorStops: [e],
-          gradientColorStopPositions: [q, R],
-          inset: N(),
-          margin: N(),
-          opacity: P(),
-          padding: E(),
-          saturate: P(),
-          scale: P(),
-          sepia: M(),
-          skew: P(),
-          space: E(),
-          translate: E(),
+          gradientColorStopPositions: [O, _],
+          inset: E(),
+          margin: E(),
+          opacity: T(),
+          padding: N(),
+          saturate: T(),
+          scale: T(),
+          sepia: q(),
+          skew: T(),
+          space: N(),
+          translate: N(),
         },
         classGroups: {
-          aspect: [{ aspect: ["auto", "square", "video", T] }],
+          aspect: [{ aspect: ["auto", "square", "video", D] }],
           container: ["container"],
-          columns: [{ columns: [_] }],
+          columns: [{ columns: [$] }],
           "break-after": [
             {
               "break-after": [
@@ -575,7 +452,7 @@
                 "right-bottom",
                 "right-top",
                 "top",
-                T,
+                D,
               ],
             },
           ],
@@ -602,29 +479,29 @@
           bottom: [{ bottom: [m] }],
           left: [{ left: [m] }],
           visibility: ["visible", "invisible", "collapse"],
-          z: [{ z: ["auto", $, T] }],
-          basis: [{ basis: N() }],
+          z: [{ z: ["auto", R, D] }],
+          basis: [{ basis: E() }],
           "flex-direction": [
             { flex: ["row", "row-reverse", "col", "col-reverse"] },
           ],
           "flex-wrap": [{ flex: ["wrap", "wrap-reverse", "nowrap"] }],
-          flex: [{ flex: ["1", "auto", "initial", "none", T] }],
-          grow: [{ grow: M() }],
-          shrink: [{ shrink: M() }],
-          order: [{ order: ["first", "last", "none", $, T] }],
-          "grid-cols": [{ "grid-cols": [H] }],
-          "col-start-end": [{ col: ["auto", { span: ["full", $, T] }, T] }],
-          "col-start": [{ "col-start": S() }],
-          "col-end": [{ "col-end": S() }],
-          "grid-rows": [{ "grid-rows": [H] }],
-          "row-start-end": [{ row: ["auto", { span: [$, T] }, T] }],
-          "row-start": [{ "row-start": S() }],
-          "row-end": [{ "row-end": S() }],
+          flex: [{ flex: ["1", "auto", "initial", "none", D] }],
+          grow: [{ grow: q() }],
+          shrink: [{ shrink: q() }],
+          order: [{ order: ["first", "last", "none", R, D] }],
+          "grid-cols": [{ "grid-cols": [F] }],
+          "col-start-end": [{ col: ["auto", { span: ["full", R, D] }, D] }],
+          "col-start": [{ "col-start": G() }],
+          "col-end": [{ "col-end": G() }],
+          "grid-rows": [{ "grid-rows": [F] }],
+          "row-start-end": [{ row: ["auto", { span: [R, D] }, D] }],
+          "row-start": [{ "row-start": G() }],
+          "row-end": [{ "row-end": G() }],
           "grid-flow": [
             { "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"] },
           ],
-          "auto-cols": [{ "auto-cols": ["auto", "min", "max", "fr", T] }],
-          "auto-rows": [{ "auto-rows": ["auto", "min", "max", "fr", T] }],
+          "auto-cols": [{ "auto-cols": ["auto", "min", "max", "fr", D] }],
+          "auto-rows": [{ "auto-rows": ["auto", "min", "max", "fr", D] }],
           gap: [{ gap: [p] }],
           "gap-x": [{ "gap-x": [p] }],
           "gap-y": [{ "gap-y": [p] }],
@@ -691,15 +568,15 @@
           "place-self": [
             { "place-self": ["auto", "start", "end", "center", "stretch"] },
           ],
-          p: [{ p: [y] }],
-          px: [{ px: [y] }],
-          py: [{ py: [y] }],
-          ps: [{ ps: [y] }],
-          pe: [{ pe: [y] }],
-          pt: [{ pt: [y] }],
-          pr: [{ pr: [y] }],
-          pb: [{ pb: [y] }],
-          pl: [{ pl: [y] }],
+          p: [{ p: [v] }],
+          px: [{ px: [v] }],
+          py: [{ py: [v] }],
+          ps: [{ ps: [v] }],
+          pe: [{ pe: [v] }],
+          pt: [{ pt: [v] }],
+          pr: [{ pr: [v] }],
+          pb: [{ pb: [v] }],
+          pl: [{ pl: [v] }],
           m: [{ m: [g] }],
           mx: [{ mx: [g] }],
           my: [{ my: [g] }],
@@ -709,37 +586,37 @@
           mr: [{ mr: [g] }],
           mb: [{ mb: [g] }],
           ml: [{ ml: [g] }],
-          "space-x": [{ "space-x": [j] }],
+          "space-x": [{ "space-x": [C] }],
           "space-x-reverse": ["space-x-reverse"],
-          "space-y": [{ "space-y": [j] }],
+          "space-y": [{ "space-y": [C] }],
           "space-y-reverse": ["space-y-reverse"],
-          w: [{ w: ["auto", "min", "max", "fit", "svw", "lvw", "dvw", T, r] }],
-          "min-w": [{ "min-w": [T, r, "min", "max", "fit"] }],
+          w: [{ w: ["auto", "min", "max", "fit", "svw", "lvw", "dvw", D, o] }],
+          "min-w": [{ "min-w": [D, o, "min", "max", "fit"] }],
           "max-w": [
             {
               "max-w": [
-                T,
-                r,
+                D,
+                o,
                 "none",
                 "full",
                 "min",
                 "max",
                 "fit",
                 "prose",
-                { screen: [_] },
-                _,
+                { screen: [$] },
+                $,
               ],
             },
           ],
-          h: [{ h: [T, r, "auto", "min", "max", "fit", "svh", "lvh", "dvh"] }],
+          h: [{ h: [D, o, "auto", "min", "max", "fit", "svh", "lvh", "dvh"] }],
           "min-h": [
-            { "min-h": [T, r, "min", "max", "fit", "svh", "lvh", "dvh"] },
+            { "min-h": [D, o, "min", "max", "fit", "svh", "lvh", "dvh"] },
           ],
           "max-h": [
-            { "max-h": [T, r, "min", "max", "fit", "svh", "lvh", "dvh"] },
+            { "max-h": [D, o, "min", "max", "fit", "svh", "lvh", "dvh"] },
           ],
-          size: [{ size: [T, r, "auto", "min", "max", "fit"] }],
-          "font-size": [{ text: ["base", _, R] }],
+          size: [{ size: [D, o, "auto", "min", "max", "fit"] }],
+          "font-size": [{ text: ["base", $, _] }],
           "font-smoothing": ["antialiased", "subpixel-antialiased"],
           "font-style": ["italic", "not-italic"],
           "font-weight": [
@@ -754,11 +631,11 @@
                 "bold",
                 "extrabold",
                 "black",
-                L,
+                I,
               ],
             },
           ],
-          "font-family": [{ font: [H] }],
+          "font-family": [{ font: [F] }],
           "fvn-normal": ["normal-nums"],
           "fvn-ordinal": ["ordinal"],
           "fvn-slashed-zero": ["slashed-zero"],
@@ -774,11 +651,11 @@
                 "wide",
                 "wider",
                 "widest",
-                T,
+                D,
               ],
             },
           ],
-          "line-clamp": [{ "line-clamp": ["none", O, L] }],
+          "line-clamp": [{ "line-clamp": ["none", P, I] }],
           leading: [
             {
               leading: [
@@ -788,13 +665,13 @@
                 "normal",
                 "relaxed",
                 "loose",
-                I,
-                T,
+                M,
+                D,
               ],
             },
           ],
-          "list-image": [{ "list-image": ["none", T] }],
-          "list-style-type": [{ list: ["none", "disc", "decimal", T] }],
+          "list-image": [{ "list-image": ["none", D] }],
+          "list-style-type": [{ list: ["none", "disc", "decimal", D] }],
           "list-style-position": [{ list: ["inside", "outside"] }],
           "placeholder-color": [{ placeholder: [e] }],
           "placeholder-opacity": [{ "placeholder-opacity": [h] }],
@@ -822,9 +699,9 @@
             },
           ],
           "text-decoration-thickness": [
-            { decoration: ["auto", "from-font", I, R] },
+            { decoration: ["auto", "from-font", M, _] },
           ],
-          "underline-offset": [{ "underline-offset": ["auto", I, T] }],
+          "underline-offset": [{ "underline-offset": ["auto", M, D] }],
           "text-decoration-color": [{ decoration: [e] }],
           "text-transform": [
             "uppercase",
@@ -834,7 +711,7 @@
           ],
           "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
           "text-wrap": [{ text: ["wrap", "nowrap", "balance", "pretty"] }],
-          indent: [{ indent: E() }],
+          indent: [{ indent: N() }],
           "vertical-align": [
             {
               align: [
@@ -846,7 +723,7 @@
                 "text-bottom",
                 "sub",
                 "super",
-                T,
+                D,
               ],
             },
           ],
@@ -864,7 +741,7 @@
           ],
           break: [{ break: ["normal", "words", "all", "keep"] }],
           hyphens: [{ hyphens: ["none", "manual", "auto"] }],
-          content: [{ content: ["none", T] }],
+          content: [{ content: ["none", D] }],
           "bg-attachment": [{ bg: ["fixed", "local", "scroll"] }],
           "bg-clip": [{ "bg-clip": ["border", "padding", "content", "text"] }],
           "bg-opacity": [{ "bg-opacity": [h] }],
@@ -881,20 +758,20 @@
                 "right-bottom",
                 "right-top",
                 "top",
-                A,
+                L,
               ],
             },
           ],
           "bg-repeat": [
             { bg: ["no-repeat", { repeat: ["", "x", "y", "round", "space"] }] },
           ],
-          "bg-size": [{ bg: ["auto", "cover", "contain", B] }],
+          "bg-size": [{ bg: ["auto", "cover", "contain", A] }],
           "bg-image": [
             {
               bg: [
                 "none",
                 { "gradient-to": ["t", "tr", "r", "br", "b", "bl", "l", "tl"] },
-                U,
+                W,
               ],
             },
           ],
@@ -956,17 +833,17 @@
           "outline-style": [
             { outline: ["", "solid", "dashed", "dotted", "double", "none"] },
           ],
-          "outline-offset": [{ "outline-offset": [I, T] }],
-          "outline-w": [{ outline: [I, R] }],
+          "outline-offset": [{ "outline-offset": [M, D] }],
+          "outline-w": [{ outline: [M, _] }],
           "outline-color": [{ outline: [e] }],
-          "ring-w": [{ ring: G() }],
+          "ring-w": [{ ring: S() }],
           "ring-w-inset": ["ring-inset"],
           "ring-color": [{ ring: [e] }],
           "ring-opacity": [{ "ring-opacity": [h] }],
-          "ring-offset-w": [{ "ring-offset": [I, R] }],
+          "ring-offset-w": [{ "ring-offset": [M, _] }],
           "ring-offset-color": [{ "ring-offset": [e] }],
-          shadow: [{ shadow: ["", "inner", "none", _, F] }],
-          "shadow-color": [{ shadow: [H] }],
+          shadow: [{ shadow: ["", "inner", "none", $, B] }],
+          "shadow-color": [{ shadow: [F] }],
           opacity: [{ opacity: [h] }],
           "mix-blend": [
             {
@@ -1015,25 +892,25 @@
             },
           ],
           filter: [{ filter: ["", "none"] }],
-          blur: [{ blur: [o] }],
+          blur: [{ blur: [r] }],
           brightness: [{ brightness: [t] }],
           contrast: [{ contrast: [i] }],
-          "drop-shadow": [{ "drop-shadow": ["", "none", _, T] }],
+          "drop-shadow": [{ "drop-shadow": ["", "none", $, D] }],
           grayscale: [{ grayscale: [c] }],
           "hue-rotate": [{ "hue-rotate": [d] }],
           invert: [{ invert: [u] }],
-          saturate: [{ saturate: [v] }],
-          sepia: [{ sepia: [x] }],
+          saturate: [{ saturate: [y] }],
+          sepia: [{ sepia: [k] }],
           "backdrop-filter": [{ "backdrop-filter": ["", "none"] }],
-          "backdrop-blur": [{ "backdrop-blur": [o] }],
+          "backdrop-blur": [{ "backdrop-blur": [r] }],
           "backdrop-brightness": [{ "backdrop-brightness": [t] }],
           "backdrop-contrast": [{ "backdrop-contrast": [i] }],
           "backdrop-grayscale": [{ "backdrop-grayscale": [c] }],
           "backdrop-hue-rotate": [{ "backdrop-hue-rotate": [d] }],
           "backdrop-invert": [{ "backdrop-invert": [u] }],
           "backdrop-opacity": [{ "backdrop-opacity": [h] }],
-          "backdrop-saturate": [{ "backdrop-saturate": [v] }],
-          "backdrop-sepia": [{ "backdrop-sepia": [x] }],
+          "backdrop-saturate": [{ "backdrop-saturate": [y] }],
+          "backdrop-sepia": [{ "backdrop-sepia": [k] }],
           "border-collapse": [{ border: ["collapse", "separate"] }],
           "border-spacing": [{ "border-spacing": [a] }],
           "border-spacing-x": [{ "border-spacing-x": [a] }],
@@ -1050,25 +927,25 @@
                 "opacity",
                 "shadow",
                 "transform",
-                T,
+                D,
               ],
             },
           ],
-          duration: [{ duration: P() }],
-          ease: [{ ease: ["linear", "in", "out", "in-out", T] }],
-          delay: [{ delay: P() }],
+          duration: [{ duration: T() }],
+          ease: [{ ease: ["linear", "in", "out", "in-out", D] }],
+          delay: [{ delay: T() }],
           animate: [
-            { animate: ["none", "spin", "ping", "pulse", "bounce", T] },
+            { animate: ["none", "spin", "ping", "pulse", "bounce", D] },
           ],
           transform: [{ transform: ["", "gpu", "none"] }],
           scale: [{ scale: [w] }],
           "scale-x": [{ "scale-x": [w] }],
           "scale-y": [{ "scale-y": [w] }],
-          rotate: [{ rotate: [$, T] }],
-          "translate-x": [{ "translate-x": [C] }],
-          "translate-y": [{ "translate-y": [C] }],
-          "skew-x": [{ "skew-x": [k] }],
-          "skew-y": [{ "skew-y": [k] }],
+          rotate: [{ rotate: [R, D] }],
+          "translate-x": [{ "translate-x": [j] }],
+          "translate-y": [{ "translate-y": [j] }],
+          "skew-x": [{ "skew-x": [z] }],
+          "skew-y": [{ "skew-y": [z] }],
           "transform-origin": [
             {
               origin: [
@@ -1081,7 +958,7 @@
                 "bottom-left",
                 "left",
                 "top-left",
-                T,
+                D,
               ],
             },
           ],
@@ -1126,7 +1003,7 @@
                 "nwse-resize",
                 "zoom-in",
                 "zoom-out",
-                T,
+                D,
               ],
             },
           ],
@@ -1134,24 +1011,24 @@
           "pointer-events": [{ "pointer-events": ["none", "auto"] }],
           resize: [{ resize: ["none", "y", "x", ""] }],
           "scroll-behavior": [{ scroll: ["auto", "smooth"] }],
-          "scroll-m": [{ "scroll-m": E() }],
-          "scroll-mx": [{ "scroll-mx": E() }],
-          "scroll-my": [{ "scroll-my": E() }],
-          "scroll-ms": [{ "scroll-ms": E() }],
-          "scroll-me": [{ "scroll-me": E() }],
-          "scroll-mt": [{ "scroll-mt": E() }],
-          "scroll-mr": [{ "scroll-mr": E() }],
-          "scroll-mb": [{ "scroll-mb": E() }],
-          "scroll-ml": [{ "scroll-ml": E() }],
-          "scroll-p": [{ "scroll-p": E() }],
-          "scroll-px": [{ "scroll-px": E() }],
-          "scroll-py": [{ "scroll-py": E() }],
-          "scroll-ps": [{ "scroll-ps": E() }],
-          "scroll-pe": [{ "scroll-pe": E() }],
-          "scroll-pt": [{ "scroll-pt": E() }],
-          "scroll-pr": [{ "scroll-pr": E() }],
-          "scroll-pb": [{ "scroll-pb": E() }],
-          "scroll-pl": [{ "scroll-pl": E() }],
+          "scroll-m": [{ "scroll-m": N() }],
+          "scroll-mx": [{ "scroll-mx": N() }],
+          "scroll-my": [{ "scroll-my": N() }],
+          "scroll-ms": [{ "scroll-ms": N() }],
+          "scroll-me": [{ "scroll-me": N() }],
+          "scroll-mt": [{ "scroll-mt": N() }],
+          "scroll-mr": [{ "scroll-mr": N() }],
+          "scroll-mb": [{ "scroll-mb": N() }],
+          "scroll-ml": [{ "scroll-ml": N() }],
+          "scroll-p": [{ "scroll-p": N() }],
+          "scroll-px": [{ "scroll-px": N() }],
+          "scroll-py": [{ "scroll-py": N() }],
+          "scroll-ps": [{ "scroll-ps": N() }],
+          "scroll-pe": [{ "scroll-pe": N() }],
+          "scroll-pt": [{ "scroll-pt": N() }],
+          "scroll-pr": [{ "scroll-pr": N() }],
+          "scroll-pb": [{ "scroll-pb": N() }],
+          "scroll-pl": [{ "scroll-pl": N() }],
           "snap-align": [{ snap: ["start", "end", "center", "align-none"] }],
           "snap-stop": [{ snap: ["normal", "always"] }],
           "snap-type": [{ snap: ["none", "x", "y", "both"] }],
@@ -1162,10 +1039,10 @@
           "touch-pz": ["touch-pinch-zoom"],
           select: [{ select: ["none", "text", "all", "auto"] }],
           "will-change": [
-            { "will-change": ["auto", "scroll", "contents", "transform", T] },
+            { "will-change": ["auto", "scroll", "contents", "transform", D] },
           ],
           fill: [{ fill: [e, "none"] }],
-          "stroke-w": [{ stroke: [I, R, L] }],
+          "stroke-w": [{ stroke: [M, _, I] }],
           stroke: [{ stroke: [e, "none"] }],
           sr: ["sr-only", "not-sr-only"],
           "forced-color-adjust": [{ "forced-color-adjust": ["auto", "none"] }],
@@ -1283,153 +1160,179 @@
         conflictingClassGroupModifiers: { "font-size": ["leading"] },
       };
     });
-  function Z() {
-    for (var e = [], r = 0; r < arguments.length; r++) e[r] = arguments[r];
-    return Y(
+  function X() {
+    for (var e = [], o = 0; o < arguments.length; o++) e[o] = arguments[o];
+    return V(
       (function () {
-        for (var e, r, o = 0, t = "", n = arguments.length; o < n; o++)
-          (e = arguments[o]) && (r = a(e)) && (t && (t += " "), (t += r));
+        for (var e, o, r = 0, t = "", l = arguments.length; r < l; r++)
+          (e = arguments[r]) && (o = n(e)) && (t && (t += " "), (t += o));
         return t;
       })(e)
     );
   }
-  (e.default = function (e) {
-    var o = e.address,
-      a = e.contact,
-      s = e.socialMediaLinks,
-      i = e.className,
-      c = r.useState(null),
-      d = c[0],
-      u = c[1],
-      p = r.useRef(null),
-      b = r.useState(null),
-      f = b[0],
-      m = b[1];
-    if (
-      (console.log({ manifest: d }),
-      r.useEffect(function () {
-        "undefined" != typeof window &&
-          (window.React || (window.React = require("react")),
-          window.ReactDOM || (window.ReactDOM = require("react-dom"))),
-          (function () {
-            return n(this, void 0, void 0, function () {
-              var e, r;
-              return l(this, function (o) {
-                switch (o.label) {
-                  case 0:
-                    return (
-                      o.trys.push([0, 3, , 4]),
-                      [
-                        4,
-                        fetch(
-                          "https://akbarinejadaida.github.io/cdnfiles/websites/gt-metrix/manifest.json"
-                        ),
-                      ]
-                    );
-                  case 1:
-                    if (!(e = o.sent()).ok)
-                      throw new Error("Network response was not ok");
-                    return [4, e.json()];
-                  case 2:
-                    return [2, o.sent()];
-                  case 3:
-                    return (
-                      (r = o.sent()),
-                      console.error("Failed to fetch manifest:", r),
-                      [3, 4]
-                    );
-                  case 4:
-                    return [2];
-                }
-              });
-            });
-          })().then(function (e) {
-            u(e);
-          });
-      }, []),
-      r.useEffect(
+  function Y(e, o, r) {
+    if ("link" === e) {
+      if (document.querySelector('link[href="'.concat(o, '"]')))
+        return void (null == r || r());
+      var t = document.createElement("link");
+      (t.rel = "stylesheet"),
+        (t.href = o),
+        r && (t.onload = r),
+        document.head.appendChild(t);
+    } else if ("script" === e) {
+      if (document.querySelector('script[src="'.concat(o, '"]')))
+        return void (null == r || r());
+      var n = document.createElement("script");
+      (n.src = o),
+        (n.async = !0),
+        r && (n.onload = r),
+        document.body.appendChild(n);
+    }
+  }
+  var Z = function (e) {
+    var o = e.componentName,
+      r = e.script,
+      t = e.setComponent;
+    if (!(null == r ? void 0 : r.component))
+      return console.error("No script found for ".concat(o));
+    Y("script", r.component, function () {
+      var e = null === window || void 0 === window ? void 0 : window[o];
+      e
+        ? t(function () {
+            return e;
+          })
+        : console.error("".concat(o, " is not loaded correctly"));
+    }),
+      (null == r ? void 0 : r.style) && Y("link", r.style),
+      (null == r ? void 0 : r.baseStyle) && Y("link", r.baseStyle);
+  };
+  function ee(e) {
+    var r = e.address,
+      n = e.contact,
+      l = e.socialMediaLinks,
+      a = e.className,
+      s = e.manifest,
+      i = o.useState(null),
+      c = i[0],
+      d = i[1],
+      u = o.useState(null),
+      p = u[0],
+      b = u[1];
+    return (
+      o.useEffect(
         function () {
-          var e;
-          if (d) {
-            var r =
-                null === (e = null == d ? void 0 : d.shared) || void 0 === e
-                  ? void 0
-                  : e.navLink,
-              o = null == r ? void 0 : r.component;
-            if ("string" == typeof o) {
-              console.log("NavLink component URL:", o);
-              var t = document.createElement("script");
-              (t.src = o),
-                (t.type = "module"),
-                (t.onload = function () {
-                  m(function () {
-                    return window.NavLink;
-                  });
-                }),
-                document.head.appendChild(t);
-            } else console.error("NavLink component URL is not valid:", r);
-          }
-        },
-        [d]
-      ),
-      console.log(f),
-      !f)
-    )
-      return t.default.createElement("p", null, "Loading...");
-    var g = f;
-    return t.default.createElement(
-      "div",
-      {
-        className: Z(
-          "flex flex-col w-full gap-1 items-start justify-center sub-footer",
-          i
-        ),
-        ref: p,
-      },
-      null == a
-        ? void 0
-        : a.map(function (e) {
-            return t.default.createElement(
-              g,
-              {
-                key: e.number,
-                link: "tel:".concat(null == e ? void 0 : e.number),
-                label: e.number,
-              },
-              e.icon
-            );
-          }),
-      null == o
-        ? void 0
-        : o.map(function (e) {
-            return t.default.createElement(
-              g,
-              { key: e.label, link: "/directions", label: e.label },
-              e.icon
-            );
-          }),
-      t.default.createElement(
-        "span",
-        { className: "p-0 m-0 flex gap-0.1" },
-        null == s
-          ? void 0
-          : s.map(function (e) {
-              return t.default.createElement(
-                g,
-                {
-                  key: e.platform,
-                  href: e.url,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                  className: "px-1",
+          s &&
+            (function (e, o, r) {
+              var t = function (o, r, t) {
+                  var n = e.createElement("script");
+                  (n.src = o),
+                    (n.onload = r),
+                    (n.onerror =
+                      t ||
+                      function () {
+                        return console.error(
+                          "Failed to load script: ".concat(o)
+                        );
+                      }),
+                    e.body.appendChild(n);
                 },
-                t.default.createElement("i", {
-                  className: "".concat(e.icon, " social-icon"),
-                })
-              );
-            })
-      )
+                n = function () {
+                  window.ReactDOM
+                    ? r()
+                    : t(o.reactDom, r, function () {
+                        return console.error("Failed to load ReactDOM");
+                      });
+                };
+              window.__REACT_LOADED__
+                ? window.React && window.ReactDOM && r()
+                : ((window.__REACT_LOADED__ = !0),
+                  window.React
+                    ? n()
+                    : t(o.react, n, function () {
+                        return console.error("Failed to load React");
+                      }));
+            })(document, s.base, function () {
+              var e, o, r;
+              Z({
+                componentName: "NavLink",
+                script:
+                  null === (e = s.shared) || void 0 === e ? void 0 : e.navLink,
+                setComponent: b,
+              }),
+                Z({
+                  componentName: "Navbar",
+                  script:
+                    null ===
+                      (r =
+                        null === (o = s.layout) || void 0 === o
+                          ? void 0
+                          : o.header) || void 0 === r
+                      ? void 0
+                      : r.navbar,
+                  setComponent: d,
+                });
+            });
+        },
+        [s]
+      ),
+      c && p
+        ? t.default.createElement(
+            "div",
+            {
+              className: X(
+                "flex flex-col w-full gap-1 items-start justify-center sub-footer",
+                a
+              ),
+            },
+            t.default.createElement(c, null),
+            null == n
+              ? void 0
+              : n.map(function (e) {
+                  return t.default.createElement(
+                    p,
+                    {
+                      key: e.number,
+                      link: "tel:".concat(null == e ? void 0 : e.number),
+                      label: e.number,
+                    },
+                    e.icon
+                  );
+                }),
+            null == r
+              ? void 0
+              : r.map(function (e) {
+                  return t.default.createElement(
+                    p,
+                    { key: e.label, link: "/directions", label: e.label },
+                    e.icon
+                  );
+                }),
+            t.default.createElement(
+              "span",
+              { className: "p-0 m-0 flex gap-0.1" },
+              null == l
+                ? void 0
+                : l.map(function (e) {
+                    return t.default.createElement(
+                      p,
+                      {
+                        key: e.platform,
+                        href: e.url,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        className: "px-1",
+                      },
+                      t.default.createElement("i", {
+                        className: "".concat(e.icon, " social-icon"),
+                      })
+                    );
+                  })
+            )
+          )
+        : t.default.createElement("p", null, "Loading...")
     );
-  }),
+  }
+  "undefined" != typeof window && (window.ContactInformation = ee),
+    (e.default = ee),
     Object.defineProperty(e, "__esModule", { value: !0 });
 });
