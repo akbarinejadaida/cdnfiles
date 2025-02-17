@@ -12,9 +12,19 @@
       "favicon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK-Vg_IFRtnL2WQsSiJFML7R22xC8i0FL11w&s"
     },
     "slider": {
-      "component": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-2.js",
-      "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper.css",
-      "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiper/swiper-additional.css"
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.js",
+      "baseStyle": "https://akbarinejadaida.github.io/cdnfiles/components/home-slider/home-slider.css"
+    },
+    "informationOverlay": {
+      "vehicleBrands": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/vehicle-brands/vehicle-brands.js"
+      }
+    },
+    "advanceFilter": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/advance-filter/home/home-advance-filter.js"
+    },
+    "featureVehicleContainer": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/featureVehicleContainer/featured-vehicle-container.js"
     },
     "welcome": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome.js",
@@ -52,8 +62,27 @@
     "navLink": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/nav-link/nav-link.js"
     },
-    "typoGeraphy": {
-      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typo-geraphy/typo-geraphy.js"
+    "workHours": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/work-hours/work-hours.js"
+    },
+    "typography": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/typography/typography.js"
+    },
+    "button": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/button/button.js"
+    },
+    "form": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/form/form-maker/form-maker.js",
+      "text": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/form/text-input/text-input.js"
+      },
+      "select": {
+        "component": "https://akbarinejadaida.github.io/cdnfiles/components/form/select-input/select-input.js"
+      }
+    },
+    "swiper": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/swiperBase/swiperBase.js",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/swiperBase/swiperBase.css"
     }
   },
   "layout": {
@@ -70,6 +99,7 @@
     },
     "header": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.js",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/header/header.css",
       "navbar": {
         "component": "https://akbarinejadaida.github.io/cdnfiles/components/navbar/hoverable-navbar.js"
       },
