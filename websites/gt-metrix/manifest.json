@@ -18,6 +18,9 @@
     "advanceFilter": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/advance-filter/home/home-advance-filter.js"
     },
+    "featureVehicleContainer": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/featureVehicleContainer/featureVehicleContainer.js"
+    },
     "welcome": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome.js",
       "style": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome-2.css"
