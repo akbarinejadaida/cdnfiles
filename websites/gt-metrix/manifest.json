@@ -29,6 +29,10 @@
     "welcome": {
       "component": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome.js",
       "style": "https://akbarinejadaida.github.io/cdnfiles/components/welcome/welcome-2.css"
+    },
+    "newHome": {
+      "component": "https://akbarinejadaida.github.io/cdnfiles/components/new-home/new-home.js",
+      "style": "https://akbarinejadaida.github.io/cdnfiles/components/new-home/new-home.css"
     }
   },
   "about": {
